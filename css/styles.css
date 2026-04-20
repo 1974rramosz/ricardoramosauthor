@@ -245,6 +245,17 @@ footer {
 .footer-links a:hover { color: var(--terra-light); }
 .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
 
+/* ─── NAV OVER DARK HERO ──────────────────────────────────── */
+/* Applied to pages where the hero background is dark (index, speaking) */
+.nav.hero-dark:not(.scrolled) .nav-logo { color: rgba(255,255,255,0.9); }
+.nav.hero-dark:not(.scrolled) .nav-links a:not(.nav-cta) { color: rgba(255,255,255,0.7); }
+.nav.hero-dark:not(.scrolled) .nav-links a:not(.nav-cta):hover { color: #fff; }
+.nav.hero-dark:not(.scrolled) .nav-lang {
+  color: rgba(255,255,255,0.4);
+  border-left-color: rgba(255,255,255,0.15);
+}
+.nav.hero-dark:not(.scrolled) .nav-hamburger span { background: rgba(255,255,255,0.85); }
+
 /* ─── RESPONSIVE ──────────────────────────────────────────── */
 @media (max-width: 900px) {
   .nav-links { display: none; }
