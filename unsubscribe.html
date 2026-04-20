@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unsubscribe — Ricardo Ramos</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <style>
+    body { display: flex; flex-direction: column; min-height: 100svh; }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 5vw;
+    }
+    .unsub-card {
+      width: min(480px, 100%);
+      text-align: center;
+    }
+    .unsub-card h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .unsub-card .lead {
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    /* Email display state */
+    .email-display {
+      padding: 0.85rem 1.25rem;
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.92rem;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+    .email-display.show { display: block; }
+
+    /* Manual email input (fallback if no token in URL) */
+    .email-input-wrap {
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+    .email-input-wrap label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+    .email-input-wrap input {
+      width: 100%;
+      padding: 0 1rem;
+      height: 48px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--ink);
+      appearance: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      min-height: 44px;
+    }
+    .email-input-wrap input:focus {
+      outline: none;
+      border-color: var(--terra);
+      box-shadow: 0 0 0 3px rgba(142,65,46,0.1);
+    }
+    .email-input-wrap input.error { border-color: #c0392b; }
+    .field-err { font-size: 0.72rem; color: #c0392b; display: none; margin-top: 0.25rem; }
+    .field-err.show { display: block; }
+
+    .unsub-btn {
+      width: 100%;
+      height: 52px;
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 44px;
+      margin-bottom: 1rem;
+    }
+    .unsub-btn:hover { background: #2C1A0E; }
+    .unsub-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .unsub-btn .spinner {
+      width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff; border-radius: 50%;
+      animation: spin 0.7s linear infinite; display: none;
+    }
+    .unsub-btn.loading .spinner { display: block; }
+    .unsub-btn.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* States */
+    .state { display: none; }
+    .state.show { display: block; }
+
+    .success-icon {
+      width: 56px; height: 56px;
+      background: #d4edda;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .success-icon svg { width: 24px; height: 24px; stroke: #28a745; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .success-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+    .success-body { font-size: 0.88rem; color: var(--ink-mid); line-height: 1.75; }
+    .success-body a { color: var(--terra); border-bottom: 1px solid currentColor; }
+
+    .error-icon {
+      width: 56px; height: 56px;
+      background: #fde;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .error-icon svg { width: 24px; height: 24px; stroke: #c0392b; fill: none; stroke-width: 2; stroke-linecap: round; }
+    .error-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; color: var(--ink); margin-bottom: 0.75rem; }
+    .error-body { font-size: 0.88rem; color: var(--ink-mid); line-height: 1.75; }
+    .error-body a { color: var(--terra); border-bottom: 1px solid currentColor; }
+    .retry-btn {
+      margin-top: 1.5rem;
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-mid);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      min-height: 44px;
+    }
+    .retry-btn:hover { border-color: var(--terra); color: var(--terra); }
+
+    .fine { font-size: 0.75rem; color: var(--ink-soft); }
+    .fine a { color: var(--terra); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav scrolled" id="main-nav" role="navigation" style="position:relative;">
+    <a href="/" class="nav-logo">Ricardo Ramos</a>
+    <ul class="nav-links">
+      <li><a href="/book.html">The Book</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/speaking.html">Speaking</a></li>
+      <li><a href="/press.html">Press</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="https://es.ricardoramosauthor.com" class="nav-lang">ES</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="/book.html">The Book</a>
+    <a href="/work-with-me.html">Work With Me</a>
+    <a href="/speaking.html">Speaking</a>
+    <a href="/press.html">Press</a>
+    <a href="/about.html">About</a>
+  </div>
+
+  <main>
+    <div class="unsub-card">
+
+      <!-- DEFAULT STATE: form -->
+      <div id="state-default" class="state show">
+        <h1>Unsubscribe</h1>
+        <p class="lead">You will be removed immediately. No confirmation email, no follow-up, no questions asked.</p>
+        <div id="email-display" class="email-display" aria-live="polite"></div>
+        <div class="email-input-wrap" id="email-input-wrap">
+          <label for="unsub-email">Your email address</label>
+          <input type="email" id="unsub-email" placeholder="you@email.com" autocomplete="email" />
+          <span class="field-err" id="err-email">Please enter a valid email address.</span>
+        </div>
+        <button type="button" class="unsub-btn" id="unsub-btn">
+          <span class="btn-text">Unsubscribe me now</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+        <p class="fine">This action is immediate and permanent. To re-subscribe, visit <a href="/book.html#chapter1">the book page</a>.</p>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div id="state-success" class="state">
+        <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <p class="success-title">You are unsubscribed.</p>
+        <p class="success-body">You have been removed from all Ricardo Ramos email lists. You will not hear from us again unless you choose to re-subscribe.<br><br>If this was a mistake, you can always <a href="/book.html#chapter1">sign up again</a> at any time.</p>
+      </div>
+
+      <!-- ERROR STATE -->
+      <div id="state-error" class="state">
+        <div class="error-icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </div>
+        <p class="error-title">Something went wrong.</p>
+        <p class="error-body">We could not process your request right now. Please try again, or email <a href="mailto:ricardo@ricardoramosauthor.com">ricardo@ricardoramosauthor.com</a> and we will remove you manually within 24 hours.</p>
+        <button type="button" class="retry-btn" id="retry-btn">Try again</button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-brand">Ricardo Ramos</span>
+    <ul class="footer-links">
+      <li><a href="/book.html">The Book</a></li>
+      <li><a href="/">Home</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Ricardo Ramos. Madrid, Spain.</p>
+  </footer>
+
+  <script>
+    // Mobile nav
+    const burger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      mobileNav.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    // Read email from URL param (?email=xxx or ?token=xxx)
+    const params = new URLSearchParams(window.location.search);
+    const emailParam = params.get('email');
+    const tokenParam = params.get('token');
+    let resolvedEmail = emailParam || '';
+
+    const emailDisplay = document.getElementById('email-display');
+    const emailInputWrap = document.getElementById('email-input-wrap');
+    const emailInput = document.getElementById('unsub-email');
+
+    if (resolvedEmail) {
+      emailDisplay.textContent = resolvedEmail;
+      emailDisplay.classList.add('show');
+      emailInputWrap.style.display = 'none';
+    }
+
+    // Show/hide states
+    function showState(name) {
+      ['default','success','error'].forEach(s => {
+        document.getElementById('state-' + s).classList.toggle('show', s === name);
+      });
+    }
+
+    // Unsubscribe action
+    async function doUnsub() {
+      const email = resolvedEmail || emailInput.value.trim();
+      const errEl = document.getElementById('err-email');
+
+      if (!resolvedEmail) {
+        const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        emailInput.classList.toggle('error', !valid);
+        errEl.classList.toggle('show', !valid);
+        if (!valid) return;
+      }
+
+      const btn = document.getElementById('unsub-btn');
+      btn.classList.add('loading'); btn.disabled = true;
+
+      try {
+        const res = await fetch('/unsubscribe', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ email, token: tokenParam || null }),
+        });
+        if (!res.ok) throw new Error();
+        showState('success');
+      } catch {
+        showState('error');
+      }
+    }
+
+    document.getElementById('unsub-btn').addEventListener('click', doUnsub);
+    document.getElementById('retry-btn').addEventListener('click', () => {
+      showState('default');
+      const btn = document.getElementById('unsub-btn');
+      btn.classList.remove('loading'); btn.disabled = false;
+    });
+
+    // Allow pressing Enter in email field
+    emailInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); doUnsub(); } });
+  </script>
+</body>
+</html>

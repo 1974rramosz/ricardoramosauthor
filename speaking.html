@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speaking — Ricardo Ramos</title>
+  <meta name="description" content="What I got wrong for 42 years that almost killed my son. A keynote for leaders, HR teams, and Latin American audiences on the cost of inherited certainty." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <style>
+    .speaking-hero {
+      padding: 140px 5vw 100px;
+      background: var(--dark);
+      color: #fff;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+    }
+    .speaking-hero-inner { max-width: 820px; }
+    .speaking-hero .eyebrow { color: var(--terra-light); margin-bottom: 1.5rem; }
+    .speaking-hero .eyebrow::before { background: var(--terra-light); }
+    .talk-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 1.5rem;
+    }
+    .talk-title em { font-style: italic; color: var(--terra-light); }
+    .talk-es {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-style: italic;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 2.5rem;
+    }
+    .talk-premise {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      max-width: 620px;
+      margin-bottom: 3rem;
+    }
+    .talk-premise strong { color: rgba(255,255,255,0.85); }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary-dark {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--terra); color: #fff;
+      padding: 0.85rem 1.8rem; border-radius: var(--radius);
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+      transition: background 0.2s; min-height: 44px;
+    }
+    .btn-primary-dark:hover { background: var(--terra-light); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.6); font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.05em; padding: 0.85rem 0; min-height: 44px;
+      border-bottom: 1px solid rgba(255,255,255,0.15); transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { color: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.4); }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--terra);
+      padding: 2.5rem 5vw;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 0.4rem; }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.7); letter-spacing: 0.06em; }
+
+    /* ─── WHAT HAPPENS ─── */
+    .what-happens { padding: 100px 5vw; }
+    .what-happens h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 3rem;
+    }
+    .talk-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1.5px solid var(--border);
+    }
+    .flow-step {
+      padding: 2rem 1.75rem;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .flow-step:last-child { border-right: none; }
+    .flow-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--terra-pale);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .flow-title { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+    .flow-desc { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.7; }
+
+    /* ─── AUDIENCE GRID ─── */
+    .audience-section { padding: 80px 5vw; background: var(--cream); }
+    .audience-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+    .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .audience-card {
+      padding: 2rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .audience-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terra);
+      background: var(--terra-pale);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius);
+      margin-bottom: 0.75rem;
+    }
+    .audience-card h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+    .audience-card p { font-size: 0.88rem; color: var(--ink-mid); line-height: 1.7; }
+
+    /* ─── BOOKING FORM ─── */
+    .booking-section { padding: 100px 5vw; border-top: 1px solid var(--border); }
+    .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .booking-copy h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .booking-copy p { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.75; margin-bottom: 1rem; }
+    .booking-copy .direct-email {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.9rem; color: var(--terra); font-weight: 500;
+      margin-top: 1.5rem;
+    }
+    .booking-copy .direct-email svg { width: 16px; height: 16px; stroke: var(--terra); }
+    .form-box { background: var(--cream); border: 1px solid var(--border); padding: 2.5rem; border-radius: var(--radius); }
+
+    @media (max-width: 900px) {
+      .talk-flow { grid-template-columns: 1fr 1fr; }
+      .flow-step:nth-child(2) { border-right: none; }
+      .flow-step:nth-child(3), .flow-step:nth-child(4) { border-top: 1px solid var(--border); }
+      .audience-grid, .booking-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-bar { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .talk-flow { grid-template-columns: 1fr; }
+      .flow-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .flow-step:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="main-nav" role="navigation">
+    <a href="/" class="nav-logo">Ricardo Ramos</a>
+    <ul class="nav-links">
+      <li><a href="/book.html">The Book</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/speaking.html" class="active">Speaking</a></li>
+      <li><a href="/press.html">Press</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="https://es.ricardoramosauthor.com" class="nav-lang">ES</a></li>
+      <li><a href="/book.html#chapter1" class="nav-cta">Get Chapter 1 Free</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="/book.html">The Book</a>
+    <a href="/work-with-me.html">Work With Me</a>
+    <a href="/speaking.html">Speaking</a>
+    <a href="/press.html">Press</a>
+    <a href="/about.html">About</a>
+    <a href="/book.html#chapter1" class="mobile-cta">Get Chapter 1 Free</a>
+    <a href="https://es.ricardoramosauthor.com" style="font-size:0.85rem;color:var(--ink-soft);letter-spacing:0.08em;text-transform:uppercase;">ES</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="speaking-hero" aria-labelledby="talk-title">
+    <div class="speaking-hero-inner">
+      <p class="section-label eyebrow reveal">The talk</p>
+      <h1 class="talk-title reveal reveal-delay-1" id="talk-title">
+        What I got wrong for <em>42 years</em> that almost killed my son.
+      </h1>
+      <p class="talk-es reveal reveal-delay-2">"Tu amor de padre puede matar a tu hijo."</p>
+      <p class="talk-premise reveal reveal-delay-3">
+        I was certain and wrong and it almost killed my son. <strong>This talk is about what certainty costs</strong>, how inherited beliefs become invisible, and what it actually takes to change a conviction you have held your whole life. Not a story about gender. A story about <strong>what happens when a person cannot see past what they already believe.</strong>
+      </p>
+      <div class="hero-cta reveal reveal-delay-4">
+        <a href="#booking" class="btn-primary-dark">
+          Enquire about booking
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="/about.html" class="btn-ghost">About Ricardo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar" role="region" aria-label="Key statistics">
+    <div class="stat-item reveal">
+      <span class="stat-number">82%</span>
+      <span class="stat-label">Reduction in serious self-harm attempts when a parent accepts their child</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <span class="stat-number">13</span>
+      <span class="stat-label">Years it took Ricardo to understand what was happening in his own family</span>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <span class="stat-number">45%</span>
+      <span class="stat-label">Of transgender youth seriously consider suicide. The cause is not who they are.</span>
+    </div>
+  </div>
+
+  <!-- WHAT HAPPENS IN THE TALK -->
+  <section class="what-happens" aria-labelledby="flow-heading">
+    <div class="container">
+      <h2 class="reveal" id="flow-heading">What happens in the room</h2>
+      <div class="talk-flow">
+        <div class="flow-step reveal">
+          <div class="flow-num">01</div>
+          <p class="flow-title">The certainty trap</p>
+          <p class="flow-desc">How a confident, loving father spent thirteen years absolutely certain he was right, and what that conviction was actually protecting.</p>
+        </div>
+        <div class="flow-step reveal reveal-delay-1">
+          <div class="flow-num">02</div>
+          <p class="flow-title">Inherited beliefs</p>
+          <p class="flow-desc">The beliefs we absorb before we can choose them. Why they feel like truth and behave like identity. Why evidence alone does not move them.</p>
+        </div>
+        <div class="flow-step reveal reveal-delay-2">
+          <div class="flow-num">03</div>
+          <p class="flow-title">The cost of being right</p>
+          <p class="flow-desc">What the data actually shows about what parents do to their children when they prioritise their own certainty. The 82% that changes everything.</p>
+        </div>
+        <div class="flow-step reveal reveal-delay-3">
+          <div class="flow-num">04</div>
+          <p class="flow-title">The mechanics of change</p>
+          <p class="flow-desc">Not inspiration. The specific process by which a person dismantles a core belief and replaces it with something true. With a framework they can use tomorrow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE CONTEXTS -->
+  <section class="audience-section" aria-labelledby="audience-heading">
+    <div class="container">
+      <h2 class="reveal" id="audience-heading">Where this talk lands</h2>
+      <div class="audience-grid">
+        <div class="audience-card reveal">
+          <span class="audience-badge">Corporate / Leadership</span>
+          <h3>Beliefs that block leadership</h3>
+          <p>The same mechanism that kept Ricardo from seeing his son clearly operates in every leader who cannot update a conviction in the face of new information. The talk works without ever mentioning gender identity.</p>
+        </div>
+        <div class="audience-card reveal reveal-delay-1">
+          <span class="audience-badge">DEI &amp; inclusion</span>
+          <h3>The parent in the workplace</h3>
+          <p>Forty-five percent of transgender youth seriously consider suicide. Most of them have a parent in your organisation. This talk addresses the people who actually hold the power in those families.</p>
+        </div>
+        <div class="audience-card reveal reveal-delay-2">
+          <span class="audience-badge">Latin America</span>
+          <h3>Tu amor de padre puede matar a tu hijo</h3>
+          <p>No existe un libro escrito por un padre latinoamericano sobre este tema. Este habla llega a la audiencia que más lo necesita y menos recursos tiene. Disponible en español.</p>
+        </div>
+        <div class="audience-card reveal reveal-delay-3">
+          <span class="audience-badge">Faith communities</span>
+          <h3>God makes no mistakes</h3>
+          <p>For audiences where faith is central, Ricardo speaks directly to the theological question without avoiding it. Nature, as God's creation, has diversity as a design principle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section class="booking-section" id="booking" aria-labelledby="booking-heading">
+    <div class="container">
+      <div class="booking-grid">
+        <div class="booking-copy reveal">
+          <p class="eyebrow">Booking enquiry</p>
+          <h2 id="booking-heading">Let's talk about your event.</h2>
+          <p>Fill in the form and Ricardo will respond within 48 hours. If your event is within four weeks, email directly for a faster reply.</p>
+          <p>All formats considered: keynote (45–60 min), panel, fireside conversation, workshop (half-day). Available in English and Spanish.</p>
+          <a href="mailto:ricardo@ricardoramosauthor.com" class="direct-email">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            ricardo@ricardoramosauthor.com
+          </a>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div id="booking-error" class="form-error" role="alert"></div>
+          <div id="booking-success" class="form-success" role="alert">
+            <div class="form-success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3>Enquiry received.</h3>
+            <p>Ricardo will be in touch within 48 hours. For urgent requests email directly.</p>
+          </div>
+          <div class="form-box" id="booking-wrap">
+            <form id="booking-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="b-name">Your name</label>
+                  <input type="text" id="b-name" placeholder="Full name" required autocomplete="name" />
+                  <span class="field-error" id="err-b-name">Please enter your name.</span>
+                </div>
+                <div class="form-group">
+                  <label for="b-email">Work email</label>
+                  <input type="email" id="b-email" placeholder="you@company.com" required autocomplete="email" />
+                  <span class="field-error" id="err-b-email">Please enter a valid email.</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="b-org">Organisation</label>
+                <input type="text" id="b-org" placeholder="Company, university, or organisation name" required />
+                <span class="field-error" id="err-b-org">Please enter your organisation.</span>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="b-type">Event type</label>
+                  <select id="b-type" required>
+                    <option value="" disabled selected>Select format</option>
+                    <option value="keynote">Keynote (45–60 min)</option>
+                    <option value="panel">Panel</option>
+                    <option value="fireside">Fireside conversation</option>
+                    <option value="workshop">Workshop (half-day)</option>
+                    <option value="virtual">Virtual event</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <span class="field-error" id="err-b-type">Please select an event type.</span>
+                </div>
+                <div class="form-group">
+                  <label for="b-date">Approximate date</label>
+                  <input type="text" id="b-date" placeholder="Month and year" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="b-message">Tell me about your event</label>
+                <textarea id="b-message" placeholder="Audience size, location, what you are trying to achieve" rows="3"></textarea>
+              </div>
+              <button type="submit" class="form-submit" id="booking-btn">
+                <span class="btn-text">Send enquiry</span>
+                <span class="spinner" aria-hidden="true"></span>
+              </button>
+              <p class="form-fine">Ricardo replies to all enquiries within 48 hours.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-brand">Ricardo Ramos</span>
+    <ul class="footer-links">
+      <li><a href="/book.html">The Book</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/speaking.html">Speaking</a></li>
+      <li><a href="/press.html">Press</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/unsubscribe.html">Unsubscribe</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Ricardo Ramos. Madrid, Spain.</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+    const burger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      mobileNav.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('a').forEach(l => { l.addEventListener('click', () => { burger.classList.remove('open'); mobileNav.classList.remove('open'); document.body.style.overflow = ''; }); });
+    document.querySelectorAll('.reveal').forEach(el => {
+      const ro = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); ro.unobserve(x.target); } }); }, { threshold: 0.1 });
+      ro.observe(el);
+    });
+
+    document.getElementById('booking-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let valid = true;
+      const fields = [
+        {id:'b-name', err:'err-b-name', check: v => v.trim().length > 0},
+        {id:'b-email', err:'err-b-email', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+        {id:'b-org', err:'err-b-org', check: v => v.trim().length > 0},
+        {id:'b-type', err:'err-b-type', check: v => v !== ''},
+      ];
+      fields.forEach(({id, err, check}) => {
+        const el = document.getElementById(id);
+        const ok = check(el.value);
+        el.classList.toggle('error', !ok);
+        document.getElementById(err).classList.toggle('show', !ok);
+        if (!ok) valid = false;
+      });
+      if (!valid) return;
+      const btn = document.getElementById('booking-btn');
+      btn.classList.add('loading'); btn.disabled = true;
+      try {
+        const res = await fetch('/contact', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({
+            type: 'speaking',
+            name: document.getElementById('b-name').value.trim(),
+            email: document.getElementById('b-email').value.trim(),
+            org: document.getElementById('b-org').value.trim(),
+            eventType: document.getElementById('b-type').value,
+            date: document.getElementById('b-date').value.trim(),
+            message: document.getElementById('b-message').value.trim(),
+          }),
+        });
+        if (!res.ok) throw new Error();
+        document.getElementById('booking-wrap').style.display = 'none';
+        document.getElementById('booking-success').classList.add('show');
+      } catch {
+        const errEl = document.getElementById('booking-error');
+        errEl.textContent = 'Something went wrong. Please email ricardo@ricardoramosauthor.com directly.';
+        errEl.classList.add('show');
+        btn.classList.remove('loading'); btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

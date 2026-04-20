@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Ricardo Ramos</title>
+  <meta name="description" content="Ricardo Ramos is a Venezuelan entrepreneur and author based in Madrid. Thirteen years. One son. The story of what it costs to be wrong about the person you love most." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <style>
+    /* ─── ABOUT HERO ─── */
+    .about-hero {
+      padding: 140px 5vw 80px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .about-hero h1 em { font-style: italic; color: var(--terra); }
+    .about-hero .lead {
+      font-size: 1.05rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      max-width: 540px;
+    }
+    .photo-wrap {
+      position: relative;
+    }
+    .photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(145deg, var(--cream) 0%, var(--border) 100%);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .photo-placeholder svg { width: 40px; height: 40px; stroke: var(--border); stroke-width: 1; }
+    .photo-placeholder p { font-size: 0.78rem; color: var(--ink-soft); font-style: italic; }
+    .photo-caption {
+      position: absolute;
+      bottom: -1.5rem;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+
+    /* ─── STORY SECTIONS ─── */
+    .story-section { padding: 100px 5vw; }
+    .story-section + .story-section { padding-top: 0; }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0 4rem;
+      max-width: 860px;
+    }
+    .story-year {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--terra-pale);
+      line-height: 1;
+      padding-top: 0.25rem;
+      text-align: right;
+    }
+    .story-content h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+      line-height: 1.3;
+    }
+    .story-content p {
+      font-size: 0.98rem;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .story-content p:last-child { margin-bottom: 0; }
+    .story-content .pull {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.5;
+      border-left: 3px solid var(--terra);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+    }
+    .story-divider { height: 1px; background: var(--border); margin: 0 5vw; }
+
+    /* ─── VALENTIN SECTION ─── */
+    .valentin-section {
+      padding: 100px 5vw;
+      background: var(--dark);
+      color: #fff;
+    }
+    .valentin-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+    .valentin-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terra-light);
+      margin-bottom: 2rem;
+      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+    }
+    .valentin-label::before { content:''; width:24px; height:1px; background:var(--terra-light); }
+    .valentin-section blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 500;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.3;
+      margin-bottom: 2rem;
+    }
+    .valentin-section blockquote cite {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--terra-light);
+      margin-top: 1.5rem;
+    }
+    .valentin-context {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ─── TODAY ─── */
+    .today-section { padding: 100px 5vw; background: var(--cream); }
+    .today-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .today-copy h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .today-copy p {
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .today-facts { display: flex; flex-direction: column; gap: 0; }
+    .today-fact {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1.5rem;
+      align-items: baseline;
+    }
+    .today-fact:last-child { border-bottom: none; }
+    .fact-key {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .fact-val { font-size: 0.92rem; color: var(--ink); }
+
+    /* ─── CONTACT SECTION ─── */
+    .contact-section { padding: 80px 5vw; border-top: 1px solid var(--border); }
+    .contact-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .contact-card {
+      padding: 1.75rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.2s;
+    }
+    .contact-card:hover { border-color: var(--terra); }
+    .contact-card-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin-bottom: 0.5rem;
+    }
+    .contact-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .contact-card p {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--terra);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+      transition: gap 0.2s;
+      min-height: 44px;
+    }
+    .contact-link:hover { gap: 0.7rem; }
+
+    @media (max-width: 900px) {
+      .about-hero { grid-template-columns: 1fr; }
+      .photo-wrap { max-width: 320px; }
+      .story-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+      .story-year { text-align: left; font-size: 2rem; }
+      .today-grid, .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="main-nav" role="navigation">
+    <a href="/" class="nav-logo">Ricardo Ramos</a>
+    <ul class="nav-links">
+      <li><a href="/book.html">The Book</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/speaking.html">Speaking</a></li>
+      <li><a href="/press.html">Press</a></li>
+      <li><a href="/about.html" class="active">About</a></li>
+      <li><a href="https://es.ricardoramosauthor.com" class="nav-lang">ES</a></li>
+      <li><a href="/book.html#chapter1" class="nav-cta">Get Chapter 1 Free</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="/book.html">The Book</a>
+    <a href="/work-with-me.html">Work With Me</a>
+    <a href="/speaking.html">Speaking</a>
+    <a href="/press.html">Press</a>
+    <a href="/about.html">About</a>
+    <a href="/book.html#chapter1" class="mobile-cta">Get Chapter 1 Free</a>
+    <a href="https://es.ricardoramosauthor.com" style="font-size:0.85rem;color:var(--ink-soft);letter-spacing:0.08em;text-transform:uppercase;">ES</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="about-hero" aria-labelledby="about-heading">
+    <div class="reveal">
+      <p class="eyebrow">The person behind the book</p>
+      <h1 id="about-heading">Thirteen years. One son. The cost of being <em>certain</em>.</h1>
+      <p class="lead">Ricardo Ramos is not a therapist, a researcher, or an advocate. He is a father who was absolutely certain about something that was killing his child, and who spent thirteen years finding out he was wrong.</p>
+      <p class="lead">That is the only qualification that matters for the book he wrote. He was there. He did the damage. He found the way back.</p>
+    </div>
+    <div class="photo-wrap reveal reveal-delay-2">
+      <div class="photo-placeholder" role="img" aria-label="Ricardo Ramos author photo — coming soon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <p>Author photo coming soon</p>
+      </div>
+      <p class="photo-caption">Ricardo Ramos — Madrid, Spain</p>
+    </div>
+  </section>
+
+  <!-- STORY: THE BEGINNING -->
+  <section class="story-section" aria-label="Ricardo's story">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-year reveal">2011</div>
+        <div class="story-content reveal reveal-delay-1">
+          <h2>A phone call he was not ready for.</h2>
+          <p>Ricardo was living and working in Madrid, building companies, raising a family he was proud of, when he received a call from Lorena, the mother of his oldest child. Something was happening with their child that he did not have a category for. His first reaction was the one most fathers have: this is a phase. It will pass. I know my child.</p>
+          <p>He was wrong about all three.</p>
+          <div class="pull">He thought he was being patient. What he was actually doing was waiting for reality to match his expectations.</div>
+          <p>Ricardo was raised Catholic in Venezuela, in a culture where identity was fixed, gender was binary, and a father's job was to know his children and guide them toward the life he could see clearly and they apparently could not. He was not cruel. He was not hateful. He was loving, present, and completely certain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="story-divider"></div>
+
+  <!-- STORY: THE MIDDLE -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-year reveal">2015</div>
+        <div class="story-content reveal reveal-delay-1">
+          <h2>The years that changed nothing, slowly.</h2>
+          <p>He read things. He talked to people. He found evidence for every position he already held and filtered out everything that contradicted it. He argued with Lorena. He watched his child become quieter, more withdrawn, further away. He attributed this to the phase, to adolescence, to the normal turbulence of growing up.</p>
+          <p>What he could not see, because his certainty would not let him see it, was that his child was not going through a phase. His child was being erased, slowly, by the gap between who he was and who his father needed him to be.</p>
+          <div class="pull">The data on this is clear: 45 percent of transgender youth seriously consider suicide. Not because of who they are. Because of how the people around them respond to who they are.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="story-divider"></div>
+
+  <!-- STORY: THE TURN -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-year reveal">2022</div>
+        <div class="story-content reveal reveal-delay-1">
+          <h2>A road trip along the Cantabrian coast. November. Ricardo stopped talking.</h2>
+          <p>He does not describe it as a revelation. It was not sudden. It was the end of a long process of a man running out of arguments. He had been in the car with Valentin for hours. At some point, instead of explaining, he listened. For what may have been the first time, without waiting for his turn to correct.</p>
+          <p>What he heard was a son who had been trying to reach him for years. Not asking for his blessing. Not asking him to understand. Asking him to see.</p>
+          <div class="pull">"I knew exactly what my child was. My child knew better."</div>
+          <p>The belief did not dissolve that day. It began to. Beliefs that have been held for forty years do not dissolve in a car journey. They dissolve slowly, under the pressure of evidence, relationship, and the specific pain of a father who finally understands what his certainty has cost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALENTIN -->
+  <section class="valentin-section" aria-label="A note about Valentin">
+    <div class="valentin-inner">
+      <p class="valentin-label reveal">Valentin Ramos</p>
+      <blockquote class="reveal reveal-delay-1">
+        "gracias por evolucionar conmigo."
+        <cite>— Valentin Ramos, inscription on the sculpture 10 Lustros, made for Ricardo's 50th birthday</cite>
+      </blockquote>
+      <p class="valentin-context reveal reveal-delay-2">Valentin is 23 years old, a transgender man, and an artist based in Bilbao. He illustrated every chapter of this book. He made the cover sculpture. He is the reason the book exists, and he is the reason it is honest. He read every word. He agreed to every one.</p>
+    </div>
+  </section>
+
+  <!-- TODAY -->
+  <section class="today-section" aria-labelledby="today-heading">
+    <div class="container">
+      <div class="today-grid">
+        <div class="today-copy reveal">
+          <h2 id="today-heading">Today.</h2>
+          <p>Ricardo lives in Madrid with his wife Vivianne and their three children. He runs companies, writes, and works with a small number of parents who are where he was: certain, loving, and not yet ready to change.</p>
+          <p>He is not a therapist. He is not a researcher. He is proof that the most resistant, well-intentioned father can make the full journey. That is what the book offers. Not expertise. Permission.</p>
+          <p>The relationship with Valentin is what it is today: close, honest, and still being built. The relationship with Lorena, who was his co-parent through the hardest years, is one of the more unexpected outcomes of the story. From conflict, through legal intervention, to genuine friendship. All of it is in the book.</p>
+        </div>
+        <div class="today-facts reveal reveal-delay-1">
+          <div class="today-fact">
+            <span class="fact-key">Based in</span>
+            <span class="fact-val">Madrid, Spain</span>
+          </div>
+          <div class="today-fact">
+            <span class="fact-key">Originally from</span>
+            <span class="fact-val">Venezuela</span>
+          </div>
+          <div class="today-fact">
+            <span class="fact-key">Family</span>
+            <span class="fact-val">Married to Vivianne. Three children: Valentin, Leia, and Gael.</span>
+          </div>
+          <div class="today-fact">
+            <span class="fact-key">Background</span>
+            <span class="fact-val">Entrepreneur and product manager</span>
+          </div>
+          <div class="today-fact">
+            <span class="fact-key">Languages</span>
+            <span class="fact-val">Spanish (native), English (fluent)</span>
+          </div>
+          <div class="today-fact">
+            <span class="fact-key">The book</span>
+            <span class="fact-val">God Makes No Mistakes — coming 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" aria-labelledby="contact-heading">
+    <div class="container">
+      <h2 class="reveal" id="contact-heading">Get in touch</h2>
+      <div class="contact-grid">
+        <div class="contact-card reveal">
+          <p class="contact-card-label">Parents</p>
+          <h3>Book a call</h3>
+          <p>A private 30-minute conversation. No charge for the first call.</p>
+          <a href="/work-with-me.html" class="contact-link">
+            Book a time
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="contact-card reveal reveal-delay-1">
+          <p class="contact-card-label">Press &amp; podcasts</p>
+          <h3>Interview enquiries</h3>
+          <p>Ricardo responds to media requests within 48 hours. Direct email only.</p>
+          <a href="mailto:ricardo@ricardoramosauthor.com" class="contact-link">
+            Email Ricardo
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="contact-card reveal reveal-delay-2">
+          <p class="contact-card-label">Events</p>
+          <h3>Speaking enquiries</h3>
+          <p>Keynotes, panels, and workshops in English and Spanish.</p>
+          <a href="/speaking.html#booking" class="contact-link">
+            Enquire about speaking
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-brand">Ricardo Ramos</span>
+    <ul class="footer-links">
+      <li><a href="/book.html">The Book</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/speaking.html">Speaking</a></li>
+      <li><a href="/press.html">Press</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/unsubscribe.html">Unsubscribe</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Ricardo Ramos. Madrid, Spain.</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+    const burger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      mobileNav.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('a').forEach(l => { l.addEventListener('click', () => { burger.classList.remove('open'); mobileNav.classList.remove('open'); document.body.style.overflow = ''; }); });
+    document.querySelectorAll('.reveal').forEach(el => {
+      const ro = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); ro.unobserve(x.target); } }); }, { threshold: 0.1 });
+      ro.observe(el);
+    });
+  </script>
+</body>
+</html>

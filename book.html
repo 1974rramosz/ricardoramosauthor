@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Book — Ricardo Ramos</title>
+  <meta name="description" content="God Makes No Mistakes. A memoir and manual for the parent who is certain they are right, terrified they might be wrong, and with no map for what comes next." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <style>
+    /* ─── BOOK HERO ─── */
+    .book-hero {
+      padding: 120px 5vw 0;
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 6rem;
+      align-items: center;
+    }
+    .book-hero-copy {}
+    .book-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .book-subtitle {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink-soft);
+      margin-bottom: 2rem;
+    }
+    .book-tagline {
+      font-size: 1.05rem;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      max-width: 520px;
+    }
+    .book-tagline strong { color: var(--ink); font-weight: 600; }
+    .book-badge {
+      display: inline-block;
+      background: var(--terra-pale);
+      color: var(--terra);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius);
+      margin-bottom: 2.5rem;
+    }
+    .book-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-bottom: 3rem; }
+    .book-cover-side {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .book-cover-placeholder {
+      width: 100%;
+      aspect-ratio: 2/3;
+      background: linear-gradient(145deg, var(--dark) 0%, var(--dark-mid) 100%);
+      border-radius: 4px;
+      box-shadow: 8px 16px 48px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem;
+      text-align: center;
+      gap: 1rem;
+    }
+    .book-cover-placeholder .cover-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.2;
+    }
+    .book-cover-placeholder .cover-author {
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terra-light);
+    }
+    .cover-note {
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* ─── WHAT IT IS ─── */
+    .what-it-is {
+      padding: 100px 5vw;
+      background: var(--dark);
+      color: #fff;
+    }
+    .what-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .what-copy h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 500;
+      line-height: 1.3;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 1.5rem;
+    }
+    .what-copy p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+    .what-copy p strong { color: rgba(255,255,255,0.85); }
+    .what-copy .italic-accent {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--terra-light);
+      line-height: 1.6;
+      margin-top: 2rem;
+    }
+    .features { display: flex; flex-direction: column; gap: 0; }
+    .feature-item {
+      padding: 1.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .feature-item:last-child { border-bottom: none; }
+    .feature-number {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--terra-light);
+      margin-bottom: 0.5rem;
+    }
+    .feature-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 0.4rem;
+    }
+    .feature-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+    }
+
+    /* ─── CHAPTER TEASER ─── */
+    .chapter-teaser { padding: 100px 5vw; background: var(--cream); }
+    .teaser-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .teaser-label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--terra); margin-bottom: 1rem;
+    }
+    .teaser-chapter {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+    .teaser-text {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .teaser-bold {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      border-left: 3px solid var(--terra);
+      padding-left: 1.25rem;
+    }
+    .teaser-accent {
+      font-size: 1rem;
+      color: var(--terra);
+      font-style: italic;
+    }
+
+    /* ─── CHAPTERS LIST ─── */
+    .chapters-section { padding: 80px 5vw; }
+    .chapters-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1.5px solid var(--border);
+      margin-top: 2.5rem;
+    }
+    .chapter-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .chapter-row:hover { background: var(--cream); }
+    .chapter-row:nth-child(even) { border-left: 1px solid var(--border); }
+    .chapter-num {
+      font-size: 0.72rem; letter-spacing: 0.1em; font-weight: 600;
+      color: var(--terra); text-transform: uppercase;
+    }
+    .chapter-title { font-size: 0.92rem; color: var(--ink); font-weight: 500; line-height: 1.4; }
+
+    /* ─── FORM SECTION ─── */
+    .form-section {
+      padding: 100px 5vw;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .form-copy h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .form-copy h2 em { font-style: italic; color: var(--terra); }
+    .form-copy p { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.75; margin-bottom: 1.25rem; }
+    .form-copy .fine {
+      font-size: 0.78rem; color: var(--ink-soft);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .form-box {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .book-hero { grid-template-columns: 1fr; padding-top: 100px; }
+      .book-cover-side { max-width: 280px; }
+      .what-grid, .teaser-grid, .form-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .chapters-grid { grid-template-columns: 1fr; }
+      .chapter-row:nth-child(even) { border-left: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo">Ricardo Ramos</a>
+    <ul class="nav-links" role="list">
+      <li><a href="/book.html" class="active">The Book</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/speaking.html">Speaking</a></li>
+      <li><a href="/press.html">Press</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="https://es.ricardoramosauthor.com" class="nav-lang">ES</a></li>
+      <li><a href="#chapter1" class="nav-cta">Get Chapter 1 Free</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="/book.html">The Book</a>
+    <a href="/work-with-me.html">Work With Me</a>
+    <a href="/speaking.html">Speaking</a>
+    <a href="/press.html">Press</a>
+    <a href="/about.html">About</a>
+    <a href="#chapter1" class="mobile-cta">Get Chapter 1 Free</a>
+    <a href="https://es.ricardoramosauthor.com" style="font-size:0.85rem;color:var(--ink-soft);letter-spacing:0.08em;text-transform:uppercase;">ES</a>
+  </div>
+
+  <!-- BOOK HERO -->
+  <section class="book-hero" aria-labelledby="book-title">
+    <div class="book-hero-copy reveal">
+      <p class="eyebrow">A Memoir and Manual</p>
+      <h1 class="book-title" id="book-title">God Makes No Mistakes</h1>
+      <p class="book-subtitle">For the parent who is certain they are right, terrified they might be wrong, and with no map for what comes next.</p>
+      <span class="book-badge">Book coming 2026</span>
+      <p class="book-tagline">
+        Every book written for parents of transgender children assumes the parent is already on board.
+        <strong>This one does not.</strong>
+      </p>
+      <p class="book-tagline">It starts where most parents are: worried, skeptical, and certain. Certainty is where Ricardo nearly lost everything. Perhaps where you are too.</p>
+      <div class="book-actions">
+        <a href="#chapter1" class="btn-primary">
+          Read Chapter 1 Free
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="/work-with-me.html" class="btn-secondary">Talk to Ricardo</a>
+      </div>
+    </div>
+    <div class="book-cover-side reveal reveal-delay-2">
+      <div class="book-cover-placeholder" aria-label="Book cover placeholder">
+        <p class="cover-title">God Makes No Mistakes</p>
+        <div style="width:40px;height:1px;background:var(--terra-light);"></div>
+        <p class="cover-author">Ricardo Ramos</p>
+      </div>
+      <p class="cover-note">Cover art by Valentin Ramos. Final cover coming 2026.</p>
+    </div>
+  </section>
+
+  <!-- WHAT IT IS -->
+  <section class="what-it-is" aria-labelledby="what-heading">
+    <div class="container">
+      <div class="what-grid">
+        <div class="what-copy reveal">
+          <h2 id="what-heading">Not the book you expected. The one you actually need.</h2>
+          <p>There is an entire genre of books for parents of transgender children. They are warm, affirming, and written for parents who already believe their child.</p>
+          <p>This is not that book. This is written for the parent at the beginning, before any of the acceptance, when everything still feels wrong and uncertain and impossible.</p>
+          <p><strong>Ricardo was that parent for thirteen years.</strong> He knows what the inside of that certainty looks like. He knows how it protects itself from evidence. He knows what it costs.</p>
+          <p class="italic-accent">"Every other book says I understand you. Mine says I was you."</p>
+        </div>
+        <div class="features reveal reveal-delay-1">
+          <div class="feature-item">
+            <p class="feature-number">01</p>
+            <p class="feature-title">Starts from resistance</p>
+            <p class="feature-desc">Opens from the same place most parents find themselves. Not yet there. That is precisely why it works for the reader who isn't either.</p>
+          </div>
+          <div class="feature-item">
+            <p class="feature-number">02</p>
+            <p class="feature-title">The science, without the politics</p>
+            <p class="feature-desc">The actual biology of gender development in plain language. Not ideology. The research that dissolved Ricardo's last objection.</p>
+          </div>
+          <div class="feature-item">
+            <p class="feature-number">03</p>
+            <p class="feature-title">A manual, not just a memoir</p>
+            <p class="feature-desc">Each chapter closes with reflection questions and concrete steps. You are meant to do something with it, not just read it and feel moved.</p>
+          </div>
+          <div class="feature-item">
+            <p class="feature-number">04</p>
+            <p class="feature-title">Written by a father, not a therapist</p>
+            <p class="feature-desc">No clinical language. No academic distance. A man telling the truth about what happened to him, in the order it happened.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER TEASER -->
+  <section class="chapter-teaser" aria-labelledby="teaser-heading">
+    <div class="container">
+      <div class="teaser-grid">
+        <div class="reveal">
+          <p class="teaser-label">From the book</p>
+          <h2 class="teaser-chapter" id="teaser-heading">Chapter 1 — Is this a phase?</h2>
+          <p class="teaser-text">I was absolutely certain it was a phase.</p>
+          <p class="teaser-text">Not defensively certain. Not the kind of certainty that covers for doubt underneath. I mean the relaxed, unexamined certainty of a man who has already seen this movie. Kids go through things. I went through things. I had a ponytail down to my shoulders at seventeen, shredded jeans modeled on Axl Rose, a communist phase at university that lasted nearly two years.</p>
+          <p class="teaser-text">I thought I was doing the same thing for Valentin. Giving him space. Being modern about it. Not panicking.</p>
+          <p class="teaser-bold">What I was actually doing was deciding in advance that this would pass, then watching through that lens, finding everything I looked at confirmed what I already believed.</p>
+          <p class="teaser-accent">That is not observation. That is the illusion of observation.</p>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <p class="teaser-label" style="margin-bottom:2rem">Inside the book</p>
+          <div class="chapters-grid">
+            <div class="chapter-row"><span class="chapter-num">Intro</span><span class="chapter-title">Before We Begin</span></div>
+            <div class="chapter-row"><span class="chapter-num">Ch. 1</span><span class="chapter-title">Is this a phase?</span></div>
+            <div class="chapter-row"><span class="chapter-num">Ch. 2</span><span class="chapter-title">The map I was given</span></div>
+            <div class="chapter-row"><span class="chapter-num">Ch. 3</span><span class="chapter-title">The vision</span></div>
+            <div class="chapter-row"><span class="chapter-num">Ch. 4</span><span class="chapter-title">Identity transformation</span></div>
+            <div class="chapter-row"><span class="chapter-num">Ch. 5</span><span class="chapter-title">The butterfly</span></div>
+            <div class="chapter-row"><span class="chapter-num">Ch. 6</span><span class="chapter-title">Managing transformation</span></div>
+            <div class="chapter-row"><span class="chapter-num">Ch. 7</span><span class="chapter-title">The science that sets you free</span></div>
+            <div class="chapter-row"><span class="chapter-num">Ch. 8</span><span class="chapter-title">The podcaster dad</span></div>
+            <div class="chapter-row"><span class="chapter-num">Ch. 9</span><span class="chapter-title">Navigating relationships</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD CAPTURE -->
+  <section class="form-section" id="chapter1" aria-labelledby="form-heading">
+    <div class="container">
+      <div class="form-grid">
+        <div class="reveal">
+          <p class="section-label">Chapter 1, free</p>
+          <h2 class="form-copy" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:500;line-height:1.25;color:var(--ink);margin-bottom:1.25rem;" id="form-heading">
+            If any of this feels <em style="font-style:italic;color:var(--terra);">uncomfortably familiar</em>, start here.
+          </h2>
+          <p style="font-size:0.95rem;color:var(--ink-mid);line-height:1.75;margin-bottom:1.25rem;">No commitment. One click to leave at any time. Just the first chapter of an honest book, arriving in your inbox in the next few minutes.</p>
+          <p style="font-size:0.78rem;color:var(--ink-soft);display:flex;align-items:center;gap:0.4rem;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            No spam. Unsubscribe in one click.
+          </p>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div id="form-error" class="form-error" role="alert"></div>
+          <div id="form-success" class="form-success" role="alert">
+            <div class="form-success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3>Chapter 1 is on its way.</h3>
+            <p id="success-msg">Check your inbox. We will be in touch when the book is ready.</p>
+          </div>
+          <div class="form-box" id="form-wrap">
+            <form id="chapter-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="f-name">Your name</label>
+                  <input type="text" id="f-name" placeholder="First name" autocomplete="given-name" required />
+                  <span class="field-error" id="err-name">Please enter your name.</span>
+                </div>
+                <div class="form-group">
+                  <label for="f-email">Email address</label>
+                  <input type="email" id="f-email" placeholder="you@email.com" autocomplete="email" required />
+                  <span class="field-error" id="err-email">Please enter a valid email.</span>
+                  <span class="email-suggest" id="email-suggest"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="f-country">Country</label>
+                  <select id="f-country" required>
+                    <option value="" disabled selected>Select country</option>
+                    <option>Argentina</option><option>Australia</option><option>Brazil</option>
+                    <option>Canada</option><option>Chile</option><option>Colombia</option>
+                    <option>Germany</option><option>Mexico</option><option>Netherlands</option>
+                    <option>Spain</option><option>United Kingdom</option><option>United States</option>
+                    <option>Uruguay</option><option>Venezuela</option><option>Other</option>
+                  </select>
+                  <span class="field-error" id="err-country">Please select your country.</span>
+                </div>
+                <div class="form-group">
+                  <label for="f-rel">I am</label>
+                  <select id="f-rel" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option value="father">A father</option>
+                    <option value="mother">A mother</option>
+                    <option value="parent">A parent (other)</option>
+                    <option value="therapist">A therapist or counsellor</option>
+                    <option value="educator">An educator</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <span class="field-error" id="err-rel">Please select an option.</span>
+                </div>
+              </div>
+              <button type="submit" class="form-submit" id="form-btn">
+                <span class="btn-text">Send me Chapter 1</span>
+                <span class="spinner" aria-hidden="true"></span>
+              </button>
+              <p class="form-fine">No spam. Unsubscribe in one click.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-brand">Ricardo Ramos</span>
+    <ul class="footer-links">
+      <li><a href="/book.html">The Book</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/speaking.html">Speaking</a></li>
+      <li><a href="/press.html">Press</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/unsubscribe.html">Unsubscribe</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Ricardo Ramos. Madrid, Spain.</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+    const burger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      mobileNav.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { burger.classList.remove('open'); mobileNav.classList.remove('open'); document.body.style.overflow = ''; });
+    });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      if (el.closest('.book-hero')) { setTimeout(() => el.classList.add('visible'), 100 + i * 120); return; }
+      const ro = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } }); }, { threshold: 0.12 });
+      ro.observe(el);
+    });
+
+    // Email typo detection
+    const commonDomains = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','live.com'];
+    function levenshtein(a, b) {
+      const dp = Array.from({length:a.length+1}, (_,i) => Array.from({length:b.length+1}, (_,j) => j===0?i:i===0?j:0));
+      for(let i=1;i<=a.length;i++) for(let j=1;j<=b.length;j++) dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);
+      return dp[a.length][b.length];
+    }
+    document.getElementById('f-email').addEventListener('blur', () => {
+      const val = document.getElementById('f-email').value.trim();
+      const suggest = document.getElementById('email-suggest');
+      if (!val.includes('@')) return;
+      const domain = val.split('@')[1].toLowerCase();
+      let best = null, bestDist = Infinity;
+      commonDomains.forEach(d => { const dist = levenshtein(domain, d); if (dist > 0 && dist <= 2 && dist < bestDist) { best = d; bestDist = dist; } });
+      if (best) {
+        const suggested = val.split('@')[0] + '@' + best;
+        suggest.textContent = `Did you mean ${suggested}?`;
+        suggest.classList.add('show');
+        suggest.onclick = () => { document.getElementById('f-email').value = suggested; suggest.classList.remove('show'); };
+      } else { suggest.classList.remove('show'); }
+    });
+
+    // Form validation & submit
+    document.getElementById('chapter-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let valid = true;
+      const fields = [
+        {id:'f-name', err:'err-name', check: v => v.trim().length > 0},
+        {id:'f-email', err:'err-email', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+        {id:'f-country', err:'err-country', check: v => v !== ''},
+        {id:'f-rel', err:'err-rel', check: v => v !== ''},
+      ];
+      fields.forEach(({id, err, check}) => {
+        const el = document.getElementById(id);
+        const ok = check(el.value);
+        el.classList.toggle('error', !ok);
+        document.getElementById(err).classList.toggle('show', !ok);
+        if (!ok) valid = false;
+      });
+      if (!valid) return;
+
+      const btn = document.getElementById('form-btn');
+      btn.classList.add('loading'); btn.disabled = true;
+      document.getElementById('form-error').classList.remove('show');
+
+      const payload = {
+        name: document.getElementById('f-name').value.trim(),
+        email: document.getElementById('f-email').value.trim(),
+        country: document.getElementById('f-country').value,
+        relationship: document.getElementById('f-rel').value,
+      };
+
+      try {
+        const res = await fetch('/subscribe', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error('Server error');
+        document.getElementById('form-wrap').style.display = 'none';
+        document.getElementById('success-msg').textContent = `Chapter 1 is on its way to ${payload.email}. We will be in touch when the book is ready.`;
+        document.getElementById('form-success').classList.add('show');
+      } catch {
+        const errEl = document.getElementById('form-error');
+        errEl.textContent = 'Something went wrong. Please try again or email ricardo@ricardoramosauthor.com directly.';
+        errEl.classList.add('show');
+        btn.classList.remove('loading'); btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Press — Ricardo Ramos</title>
+  <meta name="description" content="Press and media information for Ricardo Ramos, author of God Makes No Mistakes. Story angles, bios, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <style>
+    .press-hero {
+      padding: 140px 5vw 80px;
+      border-bottom: 1px solid var(--border);
+    }
+    .press-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 5rem;
+      align-items: start;
+    }
+    .press-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .press-hero h1 em { font-style: italic; color: var(--terra); }
+    .press-hero .lead {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      max-width: 560px;
+    }
+
+    /* ─── CONTACT BOX ─── */
+    .contact-box {
+      background: var(--dark);
+      color: #fff;
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      position: sticky;
+      top: 84px;
+    }
+    .contact-box-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terra-light);
+      margin-bottom: 1.5rem;
+    }
+    .contact-box h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 0.75rem;
+    }
+    .contact-box p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .contact-email-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--terra-light);
+      padding: 0.85rem 1.2rem;
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      transition: background 0.2s;
+      min-height: 44px;
+    }
+    .contact-email-link:hover { background: rgba(255,255,255,0.1); }
+    .contact-email-link svg { width: 16px; height: 16px; stroke: var(--terra-light); flex-shrink: 0; }
+    .response-time {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .response-time::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: #4caf50;
+      border-radius: 50%;
+    }
+
+    /* ─── STORY ANGLES ─── */
+    .story-section { padding: 80px 5vw; }
+    .story-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+    .angle-grid { display: flex; flex-direction: column; gap: 0; }
+    .angle-item {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .angle-item:last-child { border-bottom: none; }
+    .angle-tag {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terra);
+      padding: 0.3rem 0.7rem;
+      background: var(--terra-pale);
+      border-radius: var(--radius);
+      display: inline-block;
+    }
+    .angle-text h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .angle-text p {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+
+    /* ─── BIO SECTION ─── */
+    .bio-section { padding: 80px 5vw; background: var(--cream); }
+    .bio-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+    .bio-tabs { display: flex; gap: 0; border-bottom: 1.5px solid var(--border); margin-bottom: 2rem; }
+    .bio-tab {
+      padding: 0.6rem 1.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1.5px;
+      transition: color 0.2s, border-color 0.2s;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+    }
+    .bio-tab.active { color: var(--terra); border-bottom-color: var(--terra); }
+    .bio-content { display: none; }
+    .bio-content.active { display: block; }
+    .bio-text {
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      max-width: 720px;
+      margin-bottom: 1.5rem;
+    }
+    .bio-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      min-height: 44px;
+    }
+    .bio-copy-btn:hover { color: var(--terra); border-color: var(--terra); }
+    .bio-copy-btn svg { width: 13px; height: 13px; stroke: currentColor; }
+
+    /* ─── KEY FACTS ─── */
+    .facts-section { padding: 80px 5vw; }
+    .facts-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .fact-card {
+      padding: 1.75rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .fact-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--terra);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .fact-label { font-size: 0.88rem; color: var(--ink); font-weight: 500; margin-bottom: 0.4rem; }
+    .fact-source { font-size: 0.75rem; color: var(--ink-soft); font-style: italic; }
+
+    /* ─── ASSETS ─── */
+    .assets-section { padding: 60px 5vw; background: var(--cream); border-top: 1px solid var(--border); }
+    .assets-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .assets-grid { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .asset-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 1.1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.82rem;
+      color: var(--ink-mid);
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+      min-height: 44px;
+    }
+    .asset-item:hover { border-color: var(--terra); color: var(--terra); }
+    .asset-item svg { width: 14px; height: 14px; stroke: currentColor; }
+    .asset-item.unavailable { opacity: 0.45; cursor: default; pointer-events: none; }
+
+    @media (max-width: 900px) {
+      .press-hero-grid { grid-template-columns: 1fr; }
+      .contact-box { position: static; }
+      .angle-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .facts-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .facts-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="main-nav" role="navigation">
+    <a href="/" class="nav-logo">Ricardo Ramos</a>
+    <ul class="nav-links">
+      <li><a href="/book.html">The Book</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/speaking.html">Speaking</a></li>
+      <li><a href="/press.html" class="active">Press</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="https://es.ricardoramosauthor.com" class="nav-lang">ES</a></li>
+      <li><a href="/book.html#chapter1" class="nav-cta">Get Chapter 1 Free</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="/book.html">The Book</a>
+    <a href="/work-with-me.html">Work With Me</a>
+    <a href="/speaking.html">Speaking</a>
+    <a href="/press.html">Press</a>
+    <a href="/about.html">About</a>
+    <a href="/book.html#chapter1" class="mobile-cta">Get Chapter 1 Free</a>
+    <a href="https://es.ricardoramosauthor.com" style="font-size:0.85rem;color:var(--ink-soft);letter-spacing:0.08em;text-transform:uppercase;">ES</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="press-hero" aria-labelledby="press-heading">
+    <div class="press-hero-grid">
+      <div class="reveal">
+        <p class="eyebrow">For journalists and podcast hosts</p>
+        <h1 id="press-heading">
+          Every book on trans parenting is written for parents who already accept their child.
+          <em>This one is written for the ones who don't.</em>
+        </h1>
+        <p class="lead">Ricardo Ramos spent thirteen years as the most common kind of parent there is: a loving, well-intentioned father who was absolutely certain about something that was destroying his son. That is the story. And it has not been told.</p>
+        <p class="lead" style="margin-bottom:0;">In Spanish, it has never been told at all.</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="contact-box">
+          <p class="contact-box-label">Media contact</p>
+          <h2>Talk to Ricardo directly.</h2>
+          <p>No publicist. No assistant. Ricardo reads and responds to every media request himself.</p>
+          <a href="mailto:ricardo@ricardoramosauthor.com" class="contact-email-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            ricardo@ricardoramosauthor.com
+          </a>
+          <p class="response-time">Ricardo responds within 48 hours</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY ANGLES -->
+  <section class="story-section" aria-labelledby="angles-heading">
+    <div class="container">
+      <h2 class="reveal" id="angles-heading">Story angles</h2>
+      <div class="angle-grid">
+        <div class="angle-item reveal">
+          <span class="angle-tag">English</span>
+          <div class="angle-text">
+            <h3>Every book on trans parenting is written for parents who already accept their child. This one is written for the ones who don't.</h3>
+            <p>The most underserved segment in the entire conversation about transgender families is the resistant parent. They don't read the books that exist. They don't attend the workshops. Ricardo Ramos writes from inside the resistance — because for thirteen years, he was it.</p>
+          </div>
+        </div>
+        <div class="angle-item reveal reveal-delay-1">
+          <span class="angle-tag">Español</span>
+          <div class="angle-text">
+            <h3>En el mundo de habla hispana no existe un solo libro escrito por un padre latinoamericano sobre acompañar a un hijo trans. Este venezolano lo escribió.</h3>
+            <p>El mercado latinoamericano tiene cero recursos para el padre conservador que se enfrenta a la realidad transgénero de un hijo. Ricardo Ramos llena ese vacío desde adentro: fue ese padre durante trece años.</p>
+          </div>
+        </div>
+        <div class="angle-item reveal">
+          <span class="angle-tag">Data</span>
+          <div class="angle-text">
+            <h3>Parental acceptance reduces serious self-harm attempts in transgender youth by 82 percent.</h3>
+            <p>Not medication. Not therapy. The intervention is a parent. This number comes from peer-reviewed research (Ryan et al., 2010, Journal of Child and Adolescent Psychiatric Nursing) and it is the centre of Ricardo's argument: parental non-acceptance is not just a cultural position. It is a health risk.</p>
+          </div>
+        </div>
+        <div class="angle-item reveal reveal-delay-1">
+          <span class="angle-tag">Faith</span>
+          <div class="angle-text">
+            <h3>God makes no mistakes. Why a Catholic Venezuelan father believes transgender children are not an error in creation.</h3>
+            <p>Ricardo speaks to conservative and faith-based audiences without avoiding the theological question. His argument is not secular: it is grounded in the belief that nature, as God's creation, has diversity as a design principle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIOS -->
+  <section class="bio-section" aria-labelledby="bio-heading">
+    <div class="container">
+      <h2 class="reveal" id="bio-heading">Bios for publication</h2>
+      <div class="bio-tabs">
+        <button class="bio-tab active" data-tab="short" type="button">Short (50 words)</button>
+        <button class="bio-tab" data-tab="long" type="button">Long (200 words)</button>
+      </div>
+      <div class="bio-content active" id="bio-short">
+        <p class="bio-text">Ricardo Ramos is a Venezuelan entrepreneur and author based in Madrid. His book <em>God Makes No Mistakes</em> documents thirteen years of resistance, rupture, and transformation — from a certain, loving father who nearly lost his transgender son, to the unconditionally supportive parent he became. He speaks and coaches on what it actually takes to change a core belief.</p>
+        <button class="bio-copy-btn" onclick="copyBio('short')" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="copy-short-label">Copy text</span>
+        </button>
+      </div>
+      <div class="bio-content" id="bio-long">
+        <p class="bio-text">Ricardo Ramos is a Venezuelan entrepreneur, product manager, and author based in Madrid, Spain. His memoir and manual <em>God Makes No Mistakes</em> documents a thirteen-year journey from resistant, well-intentioned father to unconditionally supportive parent — with his son Valentin's journey as a transgender man at the centre of the story.</p>
+        <p class="bio-text">Born and raised in Venezuela, Ricardo brings a Latin American perspective to a conversation that has almost no Spanish-language resources for the most common kind of parent: the one who is not yet ready. His argument is not ideological. It is personal and evidential. Parental acceptance reduces serious self-harm attempts in transgender youth by 82 percent. The intervention is a parent. Ricardo writes and speaks to the people who actually hold that power.</p>
+        <p class="bio-text">He speaks in English and Spanish across corporate, faith, and cultural contexts. He lives in Madrid with his wife Vivianne and their three children.</p>
+        <button class="bio-copy-btn" onclick="copyBio('long')" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="copy-long-label">Copy text</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FACTS -->
+  <section class="facts-section" aria-labelledby="facts-heading">
+    <div class="container">
+      <h2 class="reveal" id="facts-heading">Key facts and figures</h2>
+      <div class="facts-grid">
+        <div class="fact-card reveal">
+          <div class="fact-num">82%</div>
+          <p class="fact-label">Reduction in serious self-harm attempts</p>
+          <p class="fact-source">Ryan et al., 2010. Journal of Child and Adolescent Psychiatric Nursing. Parental acceptance vs. rejection.</p>
+        </div>
+        <div class="fact-card reveal reveal-delay-1">
+          <div class="fact-num">45%</div>
+          <p class="fact-label">Of transgender youth seriously consider suicide</p>
+          <p class="fact-source">The Trevor Project, 2023 National Survey on LGBTQ+ Youth Mental Health.</p>
+        </div>
+        <div class="fact-card reveal reveal-delay-2">
+          <div class="fact-num">13</div>
+          <p class="fact-label">Years Ricardo spent certain he was right</p>
+          <p class="fact-source">From the book. 2011 to 2024. The duration matters: this is not a quick turn. It is a long one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOADABLE ASSETS -->
+  <section class="assets-section" aria-labelledby="assets-heading">
+    <div class="container">
+      <h2 class="reveal" id="assets-heading">Press assets</h2>
+      <div class="assets-grid reveal reveal-delay-1">
+        <a href="mailto:ricardo@ricardoramosauthor.com?subject=Press%20photo%20request" class="asset-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Headshot (high-res) — request by email
+        </a>
+        <span class="asset-item unavailable">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+          Book cover — available 2026
+        </span>
+        <a href="#bio-short" class="asset-item" onclick="document.querySelector('[data-tab=short]').click()">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg>
+          Short bio (50 words)
+        </a>
+        <a href="#bio-long" class="asset-item" onclick="document.querySelector('[data-tab=long]').click()">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg>
+          Long bio (200 words)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-brand">Ricardo Ramos</span>
+    <ul class="footer-links">
+      <li><a href="/book.html">The Book</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/speaking.html">Speaking</a></li>
+      <li><a href="/press.html">Press</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/unsubscribe.html">Unsubscribe</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Ricardo Ramos. Madrid, Spain.</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+    const burger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      mobileNav.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('a').forEach(l => { l.addEventListener('click', () => { burger.classList.remove('open'); mobileNav.classList.remove('open'); document.body.style.overflow = ''; }); });
+    document.querySelectorAll('.reveal').forEach(el => {
+      const ro = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); ro.unobserve(x.target); } }); }, { threshold: 0.1 });
+      ro.observe(el);
+    });
+
+    // Bio tabs
+    document.querySelectorAll('.bio-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.bio-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.bio-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('bio-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Copy bio
+    function copyBio(type) {
+      const el = document.getElementById('bio-' + type);
+      const text = Array.from(el.querySelectorAll('.bio-text')).map(p => p.innerText).join('\n\n');
+      navigator.clipboard.writeText(text).then(() => {
+        const label = document.getElementById('copy-' + type + '-label');
+        label.textContent = 'Copied!';
+        setTimeout(() => { label.textContent = 'Copy text'; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
