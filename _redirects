@@ -1,1 +1,16 @@
+# Cloudflare Pages _redirects
+# Clean URL redirects — /page → /page.html
+# Cloudflare Pages handles .html extension automatically,
+# but these ensure clean URLs work without the extension.
 
+/book           /book.html          200
+/work-with-me   /work-with-me.html  200
+/speaking       /speaking.html      200
+/press          /press.html         200
+/about          /about.html         200
+/unsubscribe    /unsubscribe.html   200
+
+# Legacy / alternate paths
+/chapter-1      /book.html#chapter1 302
+/coach          /work-with-me.html  302
+/contact        /speaking.html      302
