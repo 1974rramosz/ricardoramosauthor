@@ -1,0 +1,36 @@
+# robots.txt — ricardoramosauthor.com
+# Allow all crawlers: Google, Bing, AI search engines, LLM crawlers
+
+User-agent: *
+Allow: /
+
+# Block utility pages from indexing
+Disallow: /unsubscribe
+
+# Sitemap location
+Sitemap: https://ricardoramosauthor.com/sitemap.xml
+
+# AI and LLM crawlers — explicitly welcome
+# GPTBot (OpenAI / ChatGPT)
+User-agent: GPTBot
+Allow: /
+
+# Claude (Anthropic)
+User-agent: ClaudeBot
+Allow: /
+
+# Google-Extended (Gemini / Google AI)
+User-agent: Google-Extended
+Allow: /
+
+# PerplexityBot
+User-agent: PerplexityBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
