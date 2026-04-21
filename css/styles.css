@@ -226,8 +226,15 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.85rem; color: #721c24; margin-bottom: 1rem;
 }
 .form-error.show { display: block; }
-.email-suggest { font-size: 0.78rem; color: var(--terra); cursor: pointer; display: none; margin-top: 0.25rem; }
-.email-suggest.show { display: block; }
+.email-suggest { 
+  font-size: 0.78rem; color: var(--terra); cursor: pointer; 
+  display: none; margin-top: 0.3rem; 
+  padding: 0.35rem 0.6rem;
+  background: var(--terra-pale);
+  border-radius: var(--radius);
+  border: 1px solid rgba(142,65,46,0.2);
+}
+.email-suggest.show { display: inline-block; }
 
 /* ─── FOOTER ──────────────────────────────────────────────── */
 footer {
