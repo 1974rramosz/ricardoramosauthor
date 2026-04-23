@@ -479,7 +479,7 @@
                 </div>
                 <div class="form-group">
                   <label for="f-rel">I am</label>
-                 <select id="field-role" class="field-select" style="margin-bottom:28px">
+                 <select id="f-rel" class="field-select" style="margin-bottom:28px">
   <option value="">Select one</option>
   <option>I am the father</option>
   <option>I am the mother</option>
@@ -492,6 +492,10 @@
                   <span class="field-error" id="err-rel">Please select an option.</span>
                 </div>
               </div>
+              <label style="display:flex;gap:10px;align-items:flex-start;margin-bottom:20px;font-size:13px;color:#666;line-height:1.6;cursor:pointer;">
+  <input type="checkbox" id="field-consent" style="margin-top:3px;flex-shrink:0;accent-color:#8E412E;">
+  <span>I agree to receive Chapter 1 and occasional emails about the book. I can <a href="/unsubscribe.html" style="color:#8E412E;">unsubscribe</a> at any time. <a href="/privacy.html" style="color:#8E412E;">Privacy policy</a>.</span>
+</label>
               <button type="submit" class="form-submit" id="form-btn">
                 <span class="btn-text">Send me Chapter 1</span>
                 <span class="spinner" aria-hidden="true"></span>
@@ -590,6 +594,10 @@
         if (!ok) valid = false;
       });
       if (!valid) return;
+      if (!document.getElementById('field-consent').checked) {
+  alert('Please tick the consent box before continuing.');
+  return;
+}
 
       const btn = document.getElementById('form-btn');
       btn.classList.add('loading'); btn.disabled = true;
