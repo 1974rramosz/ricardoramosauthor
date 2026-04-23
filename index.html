@@ -503,6 +503,10 @@
         if (!ok) valid = false;
       });
       if (!valid) return;
+      if (!document.getElementById('field-consent').checked) {
+  alert('Please tick the consent box before continuing.');
+  return;
+}
       const btn = document.getElementById('form-btn');
       btn.classList.add('loading'); btn.disabled = true;
       document.getElementById('form-error').classList.remove('show');
