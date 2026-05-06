@@ -13,7 +13,6 @@ export async function onRequestPost(context) {
     }
 
     const BREVO_API_KEY = env.BREVO_API_KEY;
-    const CHAPTER1_FILE_ID = '1q3t4Agrkcgt95qplBNNinN-LHxq9_3j3';
 
     // 1. Create or update contact in Brevo list 3
     const contactRes = await fetch('https://api.brevo.com/v3/contacts', {
@@ -45,7 +44,7 @@ export async function onRequestPost(context) {
     }
 
     // 2. Send Chapter 1 delivery email via Brevo transactional
-    const chapterUrl = `https://drive.google.com/file/d/${CHAPTER1_FILE_ID}/view`;
+    const chapterUrl = 'https://ricardoramosauthor.com/GMND_Chapter1_IsThisAPhase.pdf';
 
     const emailRes = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
