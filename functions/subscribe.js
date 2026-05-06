@@ -13,7 +13,7 @@ export async function onRequestPost(context) {
     }
 
     const BREVO_API_KEY = env.BREVO_API_KEY;
-    const CHAPTER1_FILE_ID = '1q3t4Agrkcgt95qpIBNNinN-LHxq9_3j3';
+    const CHAPTER1_FILE_ID = '1q3t4Agrkcgt95qplBNNinN-LHxq9_3j3';
 
     // 1. Create or update contact in Brevo list 3
     const contactRes = await fetch('https://api.brevo.com/v3/contacts', {
