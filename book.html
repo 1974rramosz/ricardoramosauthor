@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/styles.css" />
-  <!-- Open Graph -->
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://ricardoramosauthor.com/book" />
   <meta property="og:title" content="God Makes No Mistakes — Ricardo Ramos" />
@@ -17,7 +16,6 @@
   <meta property="og:image" content="https://ricardoramosauthor.com/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://ricardoramosauthor.com/book" />
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,6 +43,8 @@
   }
   </script>
   <style>
+    html, body { overflow-x: hidden; }
+
     .book-hero {
       padding: 120px 5vw 0;
       min-height: 100svh;
@@ -53,7 +53,6 @@
       gap: 6rem;
       align-items: center;
     }
-    .book-hero-copy {}
     .book-title {
       font-family: var(--font-display);
       font-size: clamp(2.8rem, 5vw, 4.5rem);
@@ -131,166 +130,54 @@
       text-align: center;
       font-style: italic;
     }
-
-    /* ─── WHAT IT IS ─── */
-    .what-it-is {
-      padding: 100px 5vw;
-      background: var(--dark);
-      color: #fff;
-    }
-    .what-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-    .what-copy h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 500;
-      line-height: 1.3;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 1.5rem;
-    }
-    .what-copy p {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.8;
-      margin-bottom: 1.25rem;
-    }
+    .what-it-is { padding: 100px 5vw; background: var(--dark); color: #fff; }
+    .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .what-copy h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 500; line-height: 1.3; color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; }
+    .what-copy p { font-size: 1rem; color: rgba(255,255,255,0.65); line-height: 1.8; margin-bottom: 1.25rem; }
     .what-copy p strong { color: rgba(255,255,255,0.85); }
-    .what-copy .italic-accent {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-style: italic;
-      color: var(--terra-light);
-      line-height: 1.6;
-      margin-top: 2rem;
-    }
+    .what-copy .italic-accent { font-family: var(--font-display); font-size: 1.15rem; font-style: italic; color: var(--terra-light); line-height: 1.6; margin-top: 2rem; }
     .features { display: flex; flex-direction: column; gap: 0; }
-    .feature-item {
-      padding: 1.75rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
+    .feature-item { padding: 1.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .feature-item:last-child { border-bottom: none; }
-    .feature-number {
-      font-family: var(--font-display);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--terra-light);
-      margin-bottom: 0.5rem;
-    }
-    .feature-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 0.4rem;
-    }
-    .feature-desc {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.7;
-    }
-
-    /* ─── CHAPTER TEASER ─── */
+    .feature-number { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; color: var(--terra-light); margin-bottom: 0.5rem; }
+    .feature-title { font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 0.4rem; }
+    .feature-desc { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
     .chapter-teaser { padding: 100px 5vw; background: var(--cream); }
-    .teaser-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
-    }
-    .teaser-label {
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--terra); margin-bottom: 1rem;
-    }
-    .teaser-chapter {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 2rem;
-    }
-    .teaser-text {
-      font-size: 1rem;
-      color: var(--ink-mid);
-      line-height: 1.85;
-      margin-bottom: 1.25rem;
-    }
-    .teaser-bold {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--ink);
-      line-height: 1.5;
-      margin-bottom: 1.25rem;
-      border-left: 3px solid var(--terra);
-      padding-left: 1.25rem;
-    }
-    .teaser-accent {
-      font-size: 1rem;
-      color: var(--terra);
-      font-style: italic;
-    }
-
-    /* ─── CHAPTERS LIST ─── */
+    .teaser-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .teaser-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terra); margin-bottom: 1rem; }
+    .teaser-chapter { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; color: var(--ink); margin-bottom: 2rem; }
+    .teaser-text { font-size: 1rem; color: var(--ink-mid); line-height: 1.85; margin-bottom: 1.25rem; }
+    .teaser-bold { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--ink); line-height: 1.5; margin-bottom: 1.25rem; border-left: 3px solid var(--terra); padding-left: 1.25rem; }
+    .teaser-accent { font-size: 1rem; color: var(--terra); font-style: italic; }
     .chapters-section { padding: 80px 5vw; }
-    .chapters-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border: 1.5px solid var(--border);
-      margin-top: 2.5rem;
-    }
-    .chapter-row {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 1rem;
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      align-items: center;
-      transition: background 0.2s;
-    }
+    .chapters-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--border); margin-top: 2.5rem; }
+    .chapter-row { display: grid; grid-template-columns: 100px 1fr; gap: 1rem; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); align-items: center; transition: background 0.2s; }
     .chapter-row:hover { background: var(--cream); }
     .chapter-row:nth-child(even) { border-left: 1px solid var(--border); }
-    .chapter-num {
-      font-size: 0.72rem; letter-spacing: 0.1em; font-weight: 600;
-      color: var(--terra); text-transform: uppercase;
-    }
+    .chapter-num { font-size: 0.72rem; letter-spacing: 0.1em; font-weight: 600; color: var(--terra); text-transform: uppercase; }
     .chapter-title { font-size: 0.92rem; color: var(--ink); font-weight: 500; line-height: 1.4; }
 
-    /* ─── FORM SECTION ─── */
-    .form-section {
-      padding: 100px 5vw;
-      background: var(--bg);
-      border-top: 1px solid var(--border);
+    /* FORM SECTION */
+    .form-section { padding: 100px 5vw; background: var(--bg); border-top: 1px solid var(--border); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .form-box { background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 2.5rem; }
+
+    /* COUNTRY DROPDOWN */
+    .country-wrap { position: relative; }
+    #country-dropdown {
+      display: none; position: absolute; z-index: 200; left: 0; right: 0;
+      background: #fff; border: 1px solid var(--border); border-top: none;
+      max-height: 220px; overflow-y: auto;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
     }
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-    }
-    .form-copy h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      font-weight: 500;
-      line-height: 1.25;
-      color: var(--ink);
-      margin-bottom: 1.25rem;
-    }
-    .form-copy h2 em { font-style: italic; color: var(--terra); }
-    .form-copy p { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.75; margin-bottom: 1.25rem; }
-    .form-copy .fine {
-      font-size: 0.78rem; color: var(--ink-soft);
-      display: flex; align-items: center; gap: 0.4rem;
-    }
-    .form-box {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem;
-    }
+    .country-option { padding: 10px 14px; cursor: pointer; font-size: 0.9rem; color: var(--ink); line-height: 1.4; }
+    .country-option:hover { background: var(--cream); }
+
+    /* CONSENT ROW */
+    .consent-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 20px; }
+    .consent-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: #8E412E; }
+    .consent-row p { margin: 0; font-size: 13px; color: #666; line-height: 1.6; }
 
     @media (max-width: 900px) {
       .book-hero { grid-template-columns: 1fr; padding-top: 100px; }
@@ -298,6 +185,10 @@
       .what-grid, .teaser-grid, .form-grid { grid-template-columns: 1fr; gap: 3rem; }
       .chapters-grid { grid-template-columns: 1fr; }
       .chapter-row:nth-child(even) { border-left: none; }
+      .form-box { padding: 1.25rem; box-sizing: border-box; width: 100%; }
+      .form-box input,
+      .form-box select { box-sizing: border-box; width: 100%; max-width: 100%; }
+      .consent-row { width: 100%; box-sizing: border-box; }
     }
   </style>
 </head>
@@ -328,17 +219,13 @@
     <a href="https://es.ricardoramosauthor.com" style="font-size:0.85rem;color:var(--ink-soft);letter-spacing:0.08em;text-transform:uppercase;">ES</a>
   </div>
 
-  <!-- BOOK HERO -->
   <section class="book-hero" aria-labelledby="book-title">
     <div class="book-hero-copy reveal">
       <p class="eyebrow">A Memoir and Manual</p>
       <h1 class="book-title" id="book-title">God Makes No Mistakes</h1>
       <p class="book-subtitle">For the parent who is certain they are right, terrified they might be wrong, and with no map for what comes next.</p>
       <span class="book-badge">Book coming 2026</span>
-      <p class="book-tagline">
-        Every book written for parents of transgender children assumes the parent is already on board.
-        <strong>This one does not.</strong>
-      </p>
+      <p class="book-tagline">Every book written for parents of transgender children assumes the parent is already on board. <strong>This one does not.</strong></p>
       <p class="book-tagline">It starts where most parents are: worried, skeptical, and certain. Certainty is where Ricardo nearly lost everything. Perhaps where you are too.</p>
       <div class="book-actions">
         <a href="#chapter1" class="btn-primary">
@@ -358,7 +245,6 @@
     </div>
   </section>
 
-  <!-- WHAT IT IS -->
   <section class="what-it-is" aria-labelledby="what-heading">
     <div class="container">
       <div class="what-grid">
@@ -395,7 +281,6 @@
     </div>
   </section>
 
-  <!-- CHAPTER TEASER -->
   <section class="chapter-teaser" aria-labelledby="teaser-heading">
     <div class="container">
       <div class="teaser-grid">
@@ -427,13 +312,12 @@
     </div>
   </section>
 
-  <!-- LEAD CAPTURE -->
   <section class="form-section" id="chapter1" aria-labelledby="form-heading">
     <div class="container">
       <div class="form-grid">
         <div class="reveal">
           <p class="section-label">Chapter 1, free</p>
-          <h2 class="form-copy" style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:500;line-height:1.25;color:var(--ink);margin-bottom:1.25rem;" id="form-heading">
+          <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:500;line-height:1.25;color:var(--ink);margin-bottom:1.25rem;" id="form-heading">
             If any of this feels <em style="font-style:italic;color:var(--terra);">uncomfortably familiar</em>, start here.
           </h2>
           <p style="font-size:0.95rem;color:var(--ink-mid);line-height:1.75;margin-bottom:1.25rem;">No commitment. One click to leave at any time. Just the first chapter of an honest book, arriving in your inbox in the next few minutes.</p>
@@ -465,37 +349,32 @@
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group">
-                  <label for="f-country">Country</label>
-                  <select id="f-country" required>
-                    <option value="" disabled selected>Select country</option>
-                    <option>Argentina</option><option>Australia</option><option>Brazil</option>
-                    <option>Canada</option><option>Chile</option><option>Colombia</option>
-                    <option>Germany</option><option>Mexico</option><option>Netherlands</option>
-                    <option>Spain</option><option>United Kingdom</option><option>United States</option>
-                    <option>Uruguay</option><option>Venezuela</option><option>Other</option>
-                  </select>
+                <div class="form-group country-wrap">
+                  <label for="f-country-input">Country</label>
+                  <input type="text" id="f-country-input" placeholder="Type to search..." autocomplete="off" />
+                  <input type="hidden" id="f-country" />
+                  <div id="country-dropdown"></div>
                   <span class="field-error" id="err-country">Please select your country.</span>
                 </div>
                 <div class="form-group">
                   <label for="f-rel">I am</label>
-                 <select id="f-rel" class="field-select" style="margin-bottom:28px">
-  <option value="">Select one</option>
-  <option>I am the father</option>
-  <option>I am the mother</option>
-  <option>I am the spouse or partner</option>
-  <option>I am a family member</option>
-  <option>I am a friend</option>
-  <option>I am the child</option>
-  <option>I am a professional or educator</option>
-</select>
+                  <select id="f-rel" style="margin-bottom:28px">
+                    <option value="">Select one</option>
+                    <option>I am the father</option>
+                    <option>I am the mother</option>
+                    <option>I am the spouse or partner</option>
+                    <option>I am a family member</option>
+                    <option>I am a friend</option>
+                    <option>I am the child</option>
+                    <option>I am a professional or educator</option>
+                  </select>
                   <span class="field-error" id="err-rel">Please select an option.</span>
                 </div>
               </div>
-              <label style="display:flex;gap:10px;align-items:flex-start;margin-bottom:20px;font-size:13px;color:#666;line-height:1.6;cursor:pointer;">
-  <input type="checkbox" id="field-consent" style="margin-top:3px;flex-shrink:0;accent-color:#8E412E;">
-  <span>I agree to receive Chapter 1 and occasional emails about the book. I can <a href="/unsubscribe.html" style="color:#8E412E;">unsubscribe</a> at any time. <a href="/privacy.html" style="color:#8E412E;">Privacy policy</a>.</span>
-</label>
+              <div class="consent-row">
+                <input type="checkbox" id="field-consent" />
+                <p>I agree to receive Chapter 1 and occasional emails about the book. I can <a href="/unsubscribe.html" style="color:#8E412E;">unsubscribe</a> at any time. <a href="/privacy.html" style="color:#8E412E;">Privacy policy</a>.</p>
+              </div>
               <button type="submit" class="form-submit" id="form-btn">
                 <span class="btn-text">Send me Chapter 1</span>
                 <span class="spinner" aria-hidden="true"></span>
@@ -518,7 +397,7 @@
       <li><a href="/about.html">About</a></li>
       <li><a href="/unsubscribe.html">Unsubscribe</a></li>
     </ul>
-  <p class="footer-copy">© 2026 Ricardo Ramos. Madrid, Spain. &nbsp;|&nbsp; <a href="/privacy.html" style="color:#888;text-decoration:none;">Privacy policy</a> &nbsp;|&nbsp; <a href="/unsubscribe.html" style="color:#888;text-decoration:none;">Unsubscribe</a></p>
+    <p class="footer-copy">© 2026 Ricardo Ramos. Madrid, Spain. &nbsp;|&nbsp; <a href="/privacy.html" style="color:#888;text-decoration:none;">Privacy policy</a> &nbsp;|&nbsp; <a href="/unsubscribe.html" style="color:#888;text-decoration:none;">Unsubscribe</a></p>
   </footer>
 
   <script>
@@ -541,6 +420,32 @@
       ro.observe(el);
     });
 
+    // Country searchable dropdown
+    const COUNTRIES = ['Afghanistan','Albania','Algeria','Andorra','Angola','Antigua and Barbuda','Argentina','Armenia','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bhutan','Bolivia','Bosnia and Herzegovina','Botswana','Brazil','Brunei','Bulgaria','Burkina Faso','Burundi','Cabo Verde','Cambodia','Cameroon','Canada','Central African Republic','Chad','Chile','China','Colombia','Comoros','Congo','Costa Rica','Croatia','Cuba','Cyprus','Czech Republic','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador','Equatorial Guinea','Eritrea','Estonia','Eswatini','Ethiopia','Fiji','Finland','France','Gabon','Gambia','Georgia','Germany','Ghana','Greece','Grenada','Guatemala','Guinea','Guinea-Bissau','Guyana','Haiti','Honduras','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel','Italy','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kiribati','Kuwait','Kyrgyzstan','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Marshall Islands','Mauritania','Mauritius','Mexico','Micronesia','Moldova','Monaco','Mongolia','Montenegro','Morocco','Mozambique','Myanmar','Namibia','Nauru','Nepal','Netherlands','New Zealand','Nicaragua','Niger','Nigeria','North Korea','North Macedonia','Norway','Oman','Pakistan','Palau','Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Qatar','Romania','Russia','Rwanda','Saint Kitts and Nevis','Saint Lucia','Saint Vincent and the Grenadines','Samoa','San Marino','Sao Tome and Principe','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa','South Korea','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Timor-Leste','Togo','Tonga','Trinidad and Tobago','Tunisia','Turkey','Turkmenistan','Tuvalu','Uganda','Ukraine','United Arab Emirates','United Kingdom','United States','Uruguay','Uzbekistan','Vanuatu','Vatican City','Venezuela','Vietnam','Yemen','Zambia','Zimbabwe'];
+    const cInput = document.getElementById('f-country-input');
+    const cHidden = document.getElementById('f-country');
+    const cDropdown = document.getElementById('country-dropdown');
+    cInput.addEventListener('input', () => {
+      const val = cInput.value.toLowerCase().trim();
+      cHidden.value = '';
+      if (!val) { cDropdown.style.display = 'none'; return; }
+      const matches = COUNTRIES.filter(c => c.toLowerCase().startsWith(val));
+      if (!matches.length) { cDropdown.style.display = 'none'; return; }
+      cDropdown.innerHTML = matches.slice(0, 8).map(c => `<div class="country-option">${c}</div>`).join('');
+      cDropdown.style.display = 'block';
+      cDropdown.querySelectorAll('.country-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          cInput.value = opt.textContent; cHidden.value = opt.textContent;
+          cDropdown.style.display = 'none';
+          cInput.classList.remove('error');
+          document.getElementById('err-country').classList.remove('show');
+        });
+      });
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('#f-country-input') && !e.target.closest('#country-dropdown')) cDropdown.style.display = 'none';
+    });
+
     // Email typo detection
     const commonDomains = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','live.com','protonmail.com'];
     function levenshtein(a, b) {
@@ -556,34 +461,26 @@
       if (parts.length !== 2 || !parts[1]) { suggest.classList.remove('show'); return; }
       const domain = parts[1].toLowerCase();
       let best = null, bestDist = Infinity;
-      commonDomains.forEach(d => {
-        const dist = levenshtein(domain, d);
-        if (dist > 0 && dist <= 2 && dist < bestDist) { best = d; bestDist = dist; }
-      });
+      commonDomains.forEach(d => { const dist = levenshtein(domain, d); if (dist > 0 && dist <= 2 && dist < bestDist) { best = d; bestDist = dist; } });
       if (best) {
         const suggested = parts[0] + '@' + best;
         suggest.textContent = '✓ Did you mean ' + suggested + '? Click to fix.';
         suggest.classList.add('show');
-        suggest.onclick = () => { 
-          document.getElementById('f-email').value = suggested; 
-          suggest.classList.remove('show'); 
-        };
-      } else { 
-        suggest.classList.remove('show'); 
-      }
+        suggest.onclick = () => { document.getElementById('f-email').value = suggested; suggest.classList.remove('show'); };
+      } else { suggest.classList.remove('show'); }
     }
     let emailDebounce;
     document.getElementById('f-email').addEventListener('input', () => { clearTimeout(emailDebounce); emailDebounce = setTimeout(checkEmailTypo, 600); });
     document.getElementById('f-email').addEventListener('blur', checkEmailTypo);
 
-    // Form validation & submit
+    // Form submit
     document.getElementById('chapter-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       let valid = true;
       const fields = [
         {id:'f-name', err:'err-name', check: v => v.trim().length > 0},
         {id:'f-email', err:'err-email', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
-        {id:'f-country', err:'err-country', check: v => v !== ''},
+        {id:'f-country', err:'err-country', check: v => v.trim() !== ''},
         {id:'f-rel', err:'err-rel', check: v => v !== ''},
       ];
       fields.forEach(({id, err, check}) => {
@@ -594,31 +491,21 @@
         if (!ok) valid = false;
       });
       if (!valid) return;
-      if (!document.getElementById('field-consent').checked) {
-  alert('Please tick the consent box before continuing.');
-  return;
-}
-
+      if (!document.getElementById('field-consent').checked) { alert('Please tick the consent box before continuing.'); return; }
       const btn = document.getElementById('form-btn');
       btn.classList.add('loading'); btn.disabled = true;
       document.getElementById('form-error').classList.remove('show');
-
       const payload = {
         name: document.getElementById('f-name').value.trim(),
         email: document.getElementById('f-email').value.trim(),
-        country: document.getElementById('f-country').value,
+        country: document.getElementById('f-country').value.trim(),
         relationship: document.getElementById('f-rel').value,
       };
-
       try {
-        const res = await fetch('/subscribe', {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(payload),
-        });
+        const res = await fetch('/subscribe', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
         if (!res.ok) throw new Error('Server error');
         document.getElementById('form-wrap').style.display = 'none';
-        document.getElementById('success-msg').textContent = `Chapter 1 is on its way to ${payload.email}. We will be in touch when the book is ready.`;
+        document.getElementById('success-msg').textContent = 'Chapter 1 is on its way to ' + payload.email + '. We will be in touch when the book is ready.';
         document.getElementById('form-success').classList.add('show');
       } catch {
         const errEl = document.getElementById('form-error');
