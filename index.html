@@ -161,8 +161,6 @@
       .invite-form-wrap { padding: 1.5rem; box-sizing: border-box; width: 100%; }
       .invite-form-wrap input, .invite-form-wrap select { box-sizing: border-box; width: 100%; max-width: 100%; }
       .invite-form-wrap form { width: 100%; box-sizing: border-box; }
-      .invite-form-wrap label { width: 100%; box-sizing: border-box; max-width: 100%; }
-      .invite-form-wrap label span { min-width: 0; flex: 1; word-break: break-word; }}
     }
     html, body { overflow-x: hidden; }
   </style>
@@ -375,10 +373,10 @@
                   <span class="field-error" id="err-rel">Please select an option.</span>
                 </div>
               </div>
-              <label style="display:flex;gap:10px;align-items:flex-start;margin-bottom:20px;font-size:13px;color:#666;line-height:1.6;cursor:pointer;width:100%;box-sizing:border-box;">
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:20px;width:100%;box-sizing:border-box;">
                 <input type="checkbox" id="field-consent" style="margin-top:3px;flex-shrink:0;accent-color:#8E412E;">
-                <span style="min-width:0;flex:1;">I agree to receive Chapter 1 and occasional emails about the book. I can <a href="/unsubscribe.html" style="color:#8E412E;">unsubscribe</a> at any time. <a href="/privacy.html" style="color:#8E412E;">Privacy policy</a>.</span>
-              </label>
+                <p style="margin:0;font-size:13px;color:#666;line-height:1.6;">I agree to receive Chapter 1 and occasional emails about the book. I can <a href="/unsubscribe.html" style="color:#8E412E;">unsubscribe</a> at any time. <a href="/privacy.html" style="color:#8E412E;">Privacy policy</a>.</p>
+              </div>
               <button type="submit" class="form-submit" id="form-btn">
                 <span class="btn-text">Send me Chapter 1</span>
                 <span class="spinner" aria-hidden="true"></span>
