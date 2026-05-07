@@ -373,24 +373,11 @@
                   <input type="text" id="f-name" placeholder="First name" autocomplete="given-name" required />
                   <span class="field-error" id="err-name">Please enter your name.</span>
                 </div>
-                <div class="form-group">
-                  <label for="f-email">Email address</label>
-                  <input type="email" id="f-email" placeholder="you@email.com" autocomplete="email" required />
-                  <span class="field-error" id="err-email">Please enter a valid email.</span>
-                  <span class="email-suggest" id="email-suggest"></span>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="f-country">Country</label>
-                  <select id="f-country" required>
-                    <option value="" disabled selected>Select country</option>
-                    <option>Argentina</option><option>Australia</option><option>Brazil</option>
-                    <option>Canada</option><option>Chile</option><option>Colombia</option>
-                    <option>Germany</option><option>Mexico</option><option>Netherlands</option>
-                    <option>Spain</option><option>United Kingdom</option><option>United States</option>
-                    <option>Uruguay</option><option>Venezuela</option><option>Other</option>
-                  </select>
+               <div class="form-group" style="position:relative;">
+                  <label for="f-country-input">Country</label>
+                  <input type="text" id="f-country-input" placeholder="Type to search..." autocomplete="off" />
+                  <input type="hidden" id="f-country" />
+                  <div id="country-dropdown"></div>
                   <span class="field-error" id="err-country">Please select your country.</span>
                 </div>
                 <div class="form-group">
