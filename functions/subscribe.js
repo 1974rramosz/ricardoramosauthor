@@ -44,7 +44,7 @@ export async function onRequestPost(context) {
     }
 
     // 2. Send Chapter 1 delivery email via Brevo transactional
-    const chapterUrl = 'https://ricardoramosauthor.com/GMND_Chapter1_IsThisAPhase.pdf';
+    const chapterUrl = 'https://ricardoramosauthor.com/chapter-1.html';
 
     const emailRes = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
