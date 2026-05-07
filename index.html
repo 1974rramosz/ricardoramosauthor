@@ -204,9 +204,17 @@
       .invite-section {
         scroll-margin-top: 24px;
         padding-top: 24px;
+        overflow-x: hidden;
       }
       .invite-grid {
-        gap: 0.1rem;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      .hero-headline {
+        font-size: clamp(1.8rem, 8vw, 2.6rem);
+      }
+      .hero-inner {
+        max-width: 100%;
       }
     }
       .why-grid, .story-grid, .invite-grid { grid-template-columns: 1fr; gap: 3.5rem; }
