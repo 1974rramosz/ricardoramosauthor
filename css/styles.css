@@ -189,7 +189,7 @@ a { color: inherit; text-decoration: none; }
 .form-group input.error, .form-group select.error { border-color: #c0392b; }
 .field-error { font-size: 0.72rem; color: #c0392b; display: none; margin-top: 0.25rem; }
 .field-error.show { display: block; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; }
 .form-submit {
   width: 100%; height: 52px; background: var(--terra); color: #fff;
   border: none; border-radius: var(--radius); font-family: var(--font-body);
@@ -289,7 +289,7 @@ footer {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   .nav-mobile { display: flex; }
-  .form-row { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: minmax(0, 1fr); }
   footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
 }
 @media (max-width: 600px) {
