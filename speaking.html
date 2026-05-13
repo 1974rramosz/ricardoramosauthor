@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mailcheck/1.1.1/mailcheck.min.js"></script>
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ricardoramosauthor.com/speaking" />
@@ -407,7 +408,6 @@
     </ul>
     <p class="footer-copy">© 2026 Ricardo Ramos. Madrid, Spain.</p>
   </footer>
-
   <script>
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
@@ -424,7 +424,24 @@
       const ro = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); ro.unobserve(x.target); } }); }, { threshold: 0.1 });
       ro.observe(el);
     });
-
+const emailInput = document.getElementById('b-email');
+    const emailHint = document.createElement('p');
+    emailHint.style.cssText = 'font-size:0.8rem;color:var(--terra);margin-top:0.3rem;display:none;';
+    emailInput.parentNode.appendChild(emailHint);
+    emailInput.addEventListener('blur', function () {
+      Mailcheck.run({
+        email: emailInput.value,
+        suggested: function (suggestion) {
+          emailHint.style.display = 'block';
+          emailHint.innerHTML = 'Did you mean <strong style="cursor:pointer;text-decoration:underline;" id="mailcheck-fix">' + suggestion.full + '</strong>?';
+          document.getElementById('mailcheck-fix').addEventListener('click', function () {
+            emailInput.value = suggestion.full;
+            emailHint.style.display = 'none';
+          });
+        },
+        empty: function () { emailHint.style.display = 'none'; }
+      });
+    });
     document.getElementById('booking-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       let valid = true;
