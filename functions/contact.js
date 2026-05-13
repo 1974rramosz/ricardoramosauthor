@@ -1,12 +1,19 @@
 export async function onRequestPost(context) {
   const { request, env } = context;
-
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, org, eventType, date, message } = body;
 
-    if (!name || !email || !message) {
+    if (!name || !email || !org || !eventType) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return new Response(JSON.stringify({ error: 'Invalid email address' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
@@ -14,7 +21,6 @@ export async function onRequestPost(context) {
 
     const BREVO_API_KEY = env.BREVO_API_KEY;
 
-    // Send notification email to Ricardo
     const res = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
@@ -26,7 +32,7 @@ export async function onRequestPost(context) {
         sender: { name: 'ricardoramosauthor.com', email: 'ricardo@ricardoramosauthor.com' },
         to: [{ email: 'ricardo@ricardoramosauthor.com', name: 'Ricardo Ramos' }],
         replyTo: { email: email, name: name },
-        subject: `Speaking enquiry from ${name}`,
+        subject: `Speaking enquiry — ${name} / ${org}`,
         htmlContent: `
 <!DOCTYPE html>
 <html>
@@ -35,10 +41,13 @@ export async function onRequestPost(context) {
     <tr>
       <td>
         <p style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#8E412E;margin:0 0 24px;">Speaking Enquiry</p>
-        <p style="font-size:16px;color:#1a1a1a;margin:0 0 8px;"><strong>From:</strong> ${name}</p>
-        <p style="font-size:16px;color:#1a1a1a;margin:0 0 24px;"><strong>Email:</strong> <a href="mailto:${email}" style="color:#8E412E;">${email}</a></p>
+        <p style="font-size:15px;color:#1a1a1a;margin:0 0 8px;"><strong>Name:</strong> ${name}</p>
+        <p style="font-size:15px;color:#1a1a1a;margin:0 0 8px;"><strong>Email:</strong> <a href="mailto:${email}" style="color:#8E412E;">${email}</a></p>
+        <p style="font-size:15px;color:#1a1a1a;margin:0 0 8px;"><strong>Organisation:</strong> ${org}</p>
+        <p style="font-size:15px;color:#1a1a1a;margin:0 0 8px;"><strong>Event type:</strong> ${eventType}</p>
+        <p style="font-size:15px;color:#1a1a1a;margin:0 0 24px;"><strong>Approximate date:</strong> ${date || 'Not specified'}</p>
         <hr style="border:none;border-top:1px solid #E6CEBC;margin:0 0 24px;">
-        <p style="font-size:16px;color:#444;line-height:1.8;white-space:pre-wrap;">${message}</p>
+        <p style="font-size:15px;color:#444;line-height:1.8;white-space:pre-wrap;">${message || 'No additional message provided.'}</p>
       </td>
     </tr>
   </table>
