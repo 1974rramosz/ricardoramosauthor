@@ -14,14 +14,14 @@ export async function onRequestPost(context) {
     if (!question || question.trim().length < 3) {
       return new Response(
         JSON.stringify({ error: "Please enter a question." }),
-        { status: 400, headers }
+        { status: 200, headers }
       );
     }
 
     if (!env.ANTHROPIC_API_KEY) {
       return new Response(
         JSON.stringify({ error: "API key not configured." }),
-        { status: 503, headers }
+        { status: 200, headers }
       );
     }
 
@@ -48,7 +48,7 @@ ${sectionContext}`;
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-opus-4-6",
+        model: "claude-sonnet-4-6",
         max_tokens: 400,
         system: systemPrompt,
         messages: [{ role: "user", content: question }],
@@ -57,10 +57,9 @@ ${sectionContext}`;
 
     if (!response.ok) {
       const err = await response.text();
-      console.error("Anthropic error:", err);
       return new Response(
         JSON.stringify({ error: "Could not get an answer. Please try again.", detail: err }),
-        { status: 502, headers }
+        { status: 200, headers }
       );
     }
 
@@ -69,10 +68,9 @@ ${sectionContext}`;
     return new Response(JSON.stringify({ answer }), { status: 200, headers });
 
   } catch (err) {
-    console.error("Worker error:", err.message);
     return new Response(
       JSON.stringify({ error: "Something went wrong. Please try again.", detail: err.message }),
-      { status: 500, headers }
+      { status: 200, headers }
     );
   }
 }
