@@ -58,6 +58,21 @@ main{max-width:680px;margin:0 auto;padding:2rem 1.5rem 5rem;}
 .qa-answer-inner{background:var(--bg);border:0.5px solid var(--border);border-radius:6px;padding:0.85rem 1rem;}
 .qa-error{color:#993C1D;font-size:0.82rem;margin-top:0.5rem;display:none;}.qa-error.visible{display:block;}
 .qa-hint{font-size:0.75rem;color:var(--ink-soft);margin-top:0.5rem;}
+
+.start-here{background:var(--cream);border-bottom:0.5px solid var(--border);padding:2.5rem 1.5rem;}
+.start-here-inner{max-width:680px;margin:0 auto;}
+.start-here-eyebrow{font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:0.6rem;}
+.start-here-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3.5vw,1.9rem);font-weight:500;color:var(--dark);margin-bottom:0.5rem;line-height:1.25;}
+.start-here-sub{font-size:0.92rem;color:var(--ink-soft);margin-bottom:1.5rem;max-width:50ch;}
+.start-here-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-bottom:1.1rem;}
+.sh-card{display:flex;flex-direction:column;align-items:flex-start;gap:0.25rem;padding:1rem;background:var(--bg);border:0.5px solid var(--border);border-radius:8px;cursor:pointer;text-align:left;transition:border-color .15s,box-shadow .15s;font-family:'DM Sans',sans-serif;}
+.sh-card:hover{border-color:var(--terra);box-shadow:0 2px 8px rgba(142,65,46,0.08);}
+.sh-card-icon{font-size:1.2rem;margin-bottom:0.15rem;}
+.sh-card-label{font-size:0.88rem;font-weight:600;color:var(--dark);line-height:1.35;}
+.sh-card-desc{font-size:0.78rem;color:var(--ink-soft);line-height:1.4;}
+.sh-skip{background:none;border:none;font-family:'DM Sans',sans-serif;font-size:0.82rem;color:var(--ink-soft);cursor:pointer;padding:0;}
+.sh-skip:hover{color:var(--terra);}
+@media(max-width:600px){.start-here-cards{grid-template-columns:1fr;}}
 .back-top{display:block;text-align:center;font-size:0.8rem;color:var(--ink-soft);padding:1.5rem 0 0;cursor:pointer;}
 .back-top:hover{color:var(--terra);}
 @media(max-width:600px){nav{padding:1rem 1.25rem;}.nav-links{gap:1rem;font-size:0.8rem;}.hero{padding:2.5rem 1.25rem 1.5rem;}main{padding:1.5rem 1.25rem 4rem;}.qa-input-row{flex-direction:column;}.qa-btn{width:100%;}}
@@ -79,6 +94,37 @@ main{max-width:680px;margin:0 auto;padding:2rem 1.5rem 5rem;}
   <h1>The research behind<br><em>God Makes No Mistakes</em></h1>
   <p>Every study cited in the book, organised by theme. Each entry includes the key finding, its relevance to the book's argument, and a direct link to the original source.</p>
   <div class="hero-note">Studies marked <strong>contested</strong> represent minority scientific views included for intellectual honesty. Studies marked <strong>retracted</strong> are listed only to prevent their accidental use as evidence. Use the question box in each section to ask anything about the research.</div>
+</section>
+
+<section class="start-here">
+  <div class="start-here-inner">
+    <div class="start-here-eyebrow">Start here</div>
+    <h2 class="start-here-title">Where are you in this conversation?</h2>
+    <p class="start-here-sub">The research reads differently depending on where you are. Choose the one that fits and we'll take you to the most relevant place to begin.</p>
+    <div class="start-here-cards">
+      <button class="sh-card" onclick="startHere('bio')">
+        <span class="sh-card-icon">🧬</span>
+        <span class="sh-card-label">I want to understand the biology</span>
+        <span class="sh-card-desc">Start with what science says actually happens before birth</span>
+      </button>
+      <button class="sh-card" onclick="startHere('diag')">
+        <span class="sh-card-icon">📋</span>
+        <span class="sh-card-label">I was told this is a mental illness</span>
+        <span class="sh-card-desc">See how the medical establishment's position has changed</span>
+      </button>
+      <button class="sh-card" onclick="startHere('outcomes')">
+        <span class="sh-card-icon">❤️</span>
+        <span class="sh-card-label">I'm worried about my child's wellbeing</span>
+        <span class="sh-card-desc">See what the data says about what actually helps</span>
+      </button>
+      <button class="sh-card" onclick="startHere('contested')">
+        <span class="sh-card-icon">⚖️</span>
+        <span class="sh-card-label">I've heard conflicting things</span>
+        <span class="sh-card-desc">See the contested evidence — included for intellectual honesty</span>
+      </button>
+    </div>
+    <button class="sh-skip" onclick="startHere('all')">Show me everything →</button>
+  </div>
 </section>
 
 <div class="filter-bar">
@@ -363,6 +409,19 @@ function filterTheme(theme,btn){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+function startHere(theme){
+  const startEl = document.querySelector('.start-here');
+  if(startEl) startEl.style.display='none';
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  const btn = document.querySelector(`.filter-btn[onclick*="'${theme}'"]`);
+  if(btn) btn.classList.add('active');
+  else document.querySelector('.filter-btn').classList.add('active');
+  document.querySelectorAll('.section[data-theme]').forEach(s=>{
+    s.classList.toggle('hidden',theme!=='all'&&s.dataset.theme!==theme);
+  });
+  document.querySelector('.filter-bar').scrollIntoView({behavior:'smooth'});
+}
+
 async function askQuestion(btn){
   const box=btn.closest('.qa-box');
   const input=box.querySelector('.qa-input');
@@ -379,7 +438,7 @@ async function askQuestion(btn){
     const res=await fetch('/ask',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({question,section:box.dataset.section,context:box.dataset.context})
+      body:JSON.stringify({question,section:box.dataset.section})
     });
     const data=await res.json();
     if(data.error){errorEl.textContent=data.error;errorEl.classList.add('visible');}
