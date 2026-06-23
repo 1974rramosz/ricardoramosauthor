@@ -1,12 +1,7 @@
 // functions/ask.js
-// Cloudflare Pages Worker — handles Q&A requests from the resources page
-// Receives: { question, section, context } from the resources page
-// Returns: { answer } with citation numbers linked to study DOIs
-
 export async function onRequestPost(context) {
   const { request, env } = context;
 
-  // CORS headers for same-domain requests
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -25,25 +20,24 @@ export async function onRequestPost(context) {
 
     if (!env.ANTHROPIC_API_KEY) {
       return new Response(
-        JSON.stringify({ error: "Service temporarily unavailable." }),
+        JSON.stringify({ error: "API key not configured." }),
         { status: 503, headers }
       );
     }
 
-    const systemPrompt = `You are a science communication assistant for the book "God Makes No Mistakes" by Ricardo Ramos, a father who nearly lost his transgender son due to lack of information about the biology of gender identity. Your role is to answer questions about the peer-reviewed research presented on this resources page.
+    const systemPrompt = `You are a science communication assistant for the book "God Makes No Mistakes" by Ricardo Ramos. Answer questions about the peer-reviewed research on this page.
 
-STRICT RULES:
-1. Answer ONLY from the scientific sources provided in the context below. Do not introduce outside information.
-2. Every factual claim must include a citation number in square brackets, e.g. [22] or [57]. These numbers correspond to the studies listed on the page.
-3. If a question cannot be answered from the provided sources, say clearly: "The sources in this section don't cover that specific question. You may find the answer in another section of this page."
-4. Use plain, accessible language. No jargon. Write for a parent, not a researcher.
-5. Be honest about limitations. If a finding has caveats (small sample size, minority view, contested), name them.
-6. Never make claims stronger than the evidence supports.
-7. Keep answers under 150 words unless the question genuinely requires more.
+RULES:
+1. Answer ONLY from the sources provided in the context below.
+2. Include citation numbers in brackets like [22] or [57] for every factual claim.
+3. If the question cannot be answered from the provided sources, say: "The sources in this section don't cover that specific question. You may find the answer in another section of this page."
+4. Use plain language. Write for a parent, not a researcher.
+5. Be honest about limitations. Name caveats when they exist.
+6. Keep answers under 150 words.
 
 SECTION: ${section}
 
-AVAILABLE SOURCES FOR THIS SECTION:
+SOURCES:
 ${sectionContext}`;
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
@@ -54,36 +48,30 @@ ${sectionContext}`;
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-6",
+        model: "claude-opus-4-6",
         max_tokens: 400,
         system: systemPrompt,
-        messages: [
-          {
-            role: "user",
-            content: question,
-          },
-        ],
+        messages: [{ role: "user", content: question }],
       }),
     });
 
     if (!response.ok) {
       const err = await response.text();
-      console.error("Anthropic API error:", err);
+      console.error("Anthropic error:", err);
       return new Response(
-        JSON.stringify({ error: "Could not get an answer right now. Please try again." }),
+        JSON.stringify({ error: "Could not get an answer. Please try again.", detail: err }),
         { status: 502, headers }
       );
     }
 
     const data = await response.json();
     const answer = data.content?.[0]?.text || "No answer returned.";
-
     return new Response(JSON.stringify({ answer }), { status: 200, headers });
 
   } catch (err) {
-    console.error("Worker error:", err);
+    console.error("Worker error:", err.message);
     return new Response(
-      JSON.stringify({ error: "Something went wrong. Please try again." }),
+      JSON.stringify({ error: "Something went wrong. Please try again.", detail: err.message }),
       { status: 500, headers }
     );
   }
