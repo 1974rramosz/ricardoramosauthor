@@ -242,6 +242,26 @@
       background: rgba(142,65,46,.2); transition: background .3s;
     }
     .tl-dot.active { background: var(--terra); }
+
+    .tl-outer{position:relative;height:900vh;}
+    .tl-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg);display:grid;grid-template-rows:auto 1fr auto;}
+    .tl-header{padding:2rem 8vw 1.5rem;border-bottom:0.5px solid rgba(26,16,8,.08);}
+    .tl-main-title{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);margin-bottom:.4rem;display:block;}
+    .tl-subtitle{font-family:var(--font-display);font-size:clamp(1.1rem,2vw,1.5rem);font-weight:500;color:var(--dark);line-height:1.3;margin:0;}
+    .tl-card-area{overflow:hidden;padding:0 8vw;display:flex;align-items:center;}
+    .tl-track{display:flex;gap:0;width:100%;transition:transform .6s cubic-bezier(.25,.46,.45,.94);will-change:transform;}
+    .tl-card{flex:0 0 100%;opacity:0;transform:translateX(20px);transition:opacity .45s ease,transform .45s ease;display:grid;grid-template-columns:1fr 2fr;gap:4vw;align-items:start;}
+    .tl-card.on{opacity:1;transform:translateX(0);}
+    .tl-yr{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:.6rem;display:block;}
+    .tl-ttl{font-family:var(--font-display);font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:500;color:var(--dark);line-height:1.2;margin-bottom:1rem;}
+    .tl-rule{width:40px;height:2px;background:var(--terra);}
+    .tl-dsc{font-size:clamp(.88rem,1.2vw,1rem);color:var(--ink);line-height:1.8;margin-bottom:1.25rem;}
+    .tl-detail{font-size:clamp(.8rem,1.1vw,.9rem);color:var(--ink-soft);line-height:1.75;padding-left:1rem;border-left:2px solid rgba(142,65,46,.2);}
+    .tl-bottom{padding:1.25rem 8vw 1.5rem;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(26,16,8,.08);}
+    .tl-dots{display:flex;gap:7px;}
+    .tl-dot{width:6px;height:6px;border-radius:50%;background:rgba(142,65,46,.2);transition:background .3s,transform .3s;}
+    .tl-dot.on{background:var(--terra);transform:scale(1.4);}
+    @media(max-width:600px){.tl-card{grid-template-columns:1fr;gap:1.5rem;}}
 </style>
 </head>
   <nav class="nav hero-dark" id="main-nav" role="navigation" aria-label="Main navigation">
@@ -335,141 +355,14 @@
           <p>My son stopped wanting to live, not because of who he was, but because of how I responded to who he was.</p>
           <div class="son-line">He is 23. He is a transgender man. He is an artist in Bilbao. He illustrated this book. He made the cover sculpture. He is the reason any of this exists.</div>
           <p>The journey between the father who was certain and the father who understood took thirteen years. This book is the map I did not have.</p>
-          <a href="/about.html" class="btn-link" style="margin-top:1rem;">
-            Read the full story
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+          <a href="/about.html" class="btn-link" style="margin-top:1rem;">Read the full story</a>
         </div>
-        <div class="timeline-section">
-        <div class="timeline-sticky">
-          <div class="tl-header">
-            <h2>Thirteen years</h2>
-            <p>Scroll to move through the journey</p>
-          </div>
-          <div class="tl-track-wrap">
-            <div class="tl-track" id="tlTrack">
-              <div class="tl-card active">
-                <p class="tl-year">2002–2013</p>
-                <p class="tl-title">The performer</p>
-                <p class="tl-desc">Valentín played the role he was given. Ricardo believed it. A child learns early which version of themselves is safe to show. A father learns late what he missed.</p>
-              </div>
-              <div class="tl-card">
-                <p class="tl-year">2013</p>
-                <p class="tl-title">The first call</p>
-                <p class="tl-desc">Valentín calls. Non-binary. Ricardo has no map, no framework, no language. His first response, delivered with love and total certainty: this is a phase.</p>
-              </div>
-              <div class="tl-card">
-                <p class="tl-year">2013–2014</p>
-                <p class="tl-title">The wall</p>
-                <p class="tl-desc">A father who would die for his child, doing everything wrong. Certainty as armor. The distance grows. The damage compounds. Neither of them can name what is happening.</p>
-              </div>
-              <div class="tl-card">
-                <p class="tl-year">2014</p>
-                <p class="tl-title">The checkmate</p>
-                <p class="tl-desc">Valentín calls again. He feels like a man. Ricardo's answer: antidepressants, therapy, push through it. The last move of a man who has run out of moves but doesn't know it yet.</p>
-              </div>
-              <div class="tl-card">
-                <p class="tl-year">2014–2015</p>
-                <p class="tl-title">The wake-up call</p>
-                <p class="tl-desc">Valentín calls a third time. He has lost the will to live. This is the call Ricardo will spend the rest of his life being grateful he answered differently.</p>
-              </div>
-              <div class="tl-card">
-                <p class="tl-year">2015–2023</p>
-                <p class="tl-title">The long repair</p>
-                <p class="tl-desc">Shadow work. Self-forgiveness. Valentín's forgiveness. The slow, unglamorous work of becoming someone his son — and his younger children — could actually reach.</p>
-              </div>
-              <div class="tl-card">
-                <p class="tl-year">2024</p>
-                <p class="tl-title">The sculpture</p>
-                <p class="tl-desc">Valentín gives Ricardo a clay trophy for his fiftieth birthday. Inscribed: <em>gracias por evolucionar conmigo.</em> Thank you for evolving with me.</p>
-              </div>
-              <div class="tl-card">
-                <p class="tl-year">2025–2026</p>
-                <p class="tl-title">The book</p>
-                <p class="tl-desc">Thirteen years from the first call to the last page.</p>
-              </div>
-            </div>
-          </div>
-          <div class="tl-progress" id="tlProgress">
-            <div class="tl-dot active"></div>
-            <div class="tl-dot"></div>
-            <div class="tl-dot"></div>
-            <div class="tl-dot"></div>
-            <div class="tl-dot"></div>
-            <div class="tl-dot"></div>
-            <div class="tl-dot"></div>
-            <div class="tl-dot"></div>
-          </div>
-        </div>
-      </div></div>
       </div>
     </div>
   </section>
 
-
-  <section class="timeline-outer">
-    <div class="timeline-section" id="timelineSection">
-      <div class="timeline-sticky">
-        <div class="tl-header">
-          <h2>Thirteen years</h2>
-          <p>Scroll through the journey</p>
-        </div>
-        <div class="tl-track-wrap">
-          <div class="tl-track" id="tlTrack">
-            <div class="tl-card active">
-              <p class="tl-year">2002–2013</p>
-              <p class="tl-title">The performer</p>
-              <p class="tl-desc">Valentín played the role he was given. Ricardo believed it. A child learns early which version of themselves is safe to show. A father learns late what he missed.</p>
-            </div>
-            <div class="tl-card">
-              <p class="tl-year">2013</p>
-              <p class="tl-title">The first call</p>
-              <p class="tl-desc">Valentín calls. Non-binary. Ricardo has no map, no framework, no language. His first response, delivered with love and total certainty: this is a phase.</p>
-            </div>
-            <div class="tl-card">
-              <p class="tl-year">2013–2014</p>
-              <p class="tl-title">The wall</p>
-              <p class="tl-desc">A father who would die for his child, doing everything wrong. Certainty as armor. The distance grows. The damage compounds. Neither of them can name what is happening.</p>
-            </div>
-            <div class="tl-card">
-              <p class="tl-year">2014</p>
-              <p class="tl-title">The checkmate</p>
-              <p class="tl-desc">Valentín calls again. He feels like a man. Ricardo's answer: antidepressants, therapy, push through it. The last move of a man who has run out of moves but doesn't know it yet.</p>
-            </div>
-            <div class="tl-card">
-              <p class="tl-year">2014–2015</p>
-              <p class="tl-title">The wake-up call</p>
-              <p class="tl-desc">Valentín calls a third time. He has lost the will to live. This is the call Ricardo will spend the rest of his life being grateful he answered differently.</p>
-            </div>
-            <div class="tl-card">
-              <p class="tl-year">2015–2023</p>
-              <p class="tl-title">The long repair</p>
-              <p class="tl-desc">Shadow work. Self-forgiveness. Valentín's forgiveness. The slow, unglamorous work of becoming someone his son — and his younger children — could actually reach.</p>
-            </div>
-            <div class="tl-card">
-              <p class="tl-year">2024</p>
-              <p class="tl-title">The sculpture</p>
-              <p class="tl-desc">Valentín gives Ricardo a clay trophy for his fiftieth birthday. Inscribed: <em>gracias por evolucionar conmigo.</em> Thank you for evolving with me.</p>
-            </div>
-            <div class="tl-card">
-              <p class="tl-year">2025–2026</p>
-              <p class="tl-title">The book</p>
-              <p class="tl-desc">Thirteen years from the first call to the last page.</p>
-            </div>
-          </div>
-        </div>
-        <div class="tl-progress" id="tlProgress">
-          <div class="tl-dot active"></div>
-          <div class="tl-dot"></div>
-          <div class="tl-dot"></div>
-          <div class="tl-dot"></div>
-          <div class="tl-dot"></div>
-          <div class="tl-dot"></div>
-          <div class="tl-dot"></div>
-          <div class="tl-dot"></div>
-        </div>
-      </div>
-    </div>
+  <section style="padding:0;margin:0;display:block;">
+    <div class="tl-outer" id="tlOuter"><div class="tl-sticky"><div class="tl-header"><span class="tl-main-title">A father's map</span><p class="tl-subtitle">23 years from uncertainty to unconditional love</p></div><div class="tl-card-area"><div class="tl-track" id="tlTrack"><div class="tl-card on"><div><span class="tl-yr">2002-2013</span><h3 class="tl-ttl">The performer</h3><div class="tl-rule"></div></div><div><p class="tl-dsc">Valentin played the role he was given. Ricardo believed it completely. A child learns early which version of themselves is safe to show. A father learns late what he was actually looking at.</p><p class="tl-detail">The signs were there from the beginning. The summer Valentin stopped wanting to wear dresses. The art teacher who recognised something the school administration saw as threat. Ricardo watched all of it and filed it away under phases.</p></div></div><div class="tl-card"><div><span class="tl-yr">2013</span><h3 class="tl-ttl">The first call</h3><div class="tl-rule"></div></div><div><p class="tl-dsc">Valentin calls. Non-binary. Ricardo has no map, no framework, no language for what he is being told. His first response, delivered with love and total certainty: this is a phase.</p><p class="tl-detail">He researched. He came back with gentle but corrosive logic. The conversation Ricardo thought was open-minded was, in fact, the first brick in a wall he did not yet know he was building.</p></div></div><div class="tl-card"><div><span class="tl-yr">2013-2014</span><h3 class="tl-ttl">The wall</h3><div class="tl-rule"></div></div><div><p class="tl-dsc">A father who would die for his child, doing everything wrong. Certainty as armor. The distance grows without either of them naming it. The damage compounds quietly, brick by brick.</p><p class="tl-detail">Ricardo built elaborate theories. The mother-rejection theory. The cultural-contamination theory. Both made his certainty the solution and his son's experience the problem to be solved.</p></div></div><div class="tl-card"><div><span class="tl-yr">2014</span><h3 class="tl-ttl">The checkmate</h3><div class="tl-rule"></div></div><div><p class="tl-dsc">Valentin calls again. He feels like a man. He has felt this way since he was four or five. Ricardo's answer: antidepressants, continue therapy, push through it.</p><p class="tl-detail">Valentin complied, because he was a good son. Dad, I hate this. I feel like a zombie. I cannot paint. Ricardo insisted he stay on the medication. That is a sentence Ricardo still carries.</p></div></div><div class="tl-card"><div><span class="tl-yr">2014-2015</span><h3 class="tl-ttl">The wake-up call</h3><div class="tl-rule"></div></div><div><p class="tl-dsc">Valentin calls a third time. He has lost the will to live. Ricardo is 39, in Barcelona. This is the call Ricardo will spend the rest of his life being grateful he answered differently.</p><p class="tl-detail">Something broke open. A father ran out of moves and found, on the other side of running out, the only thing that had ever been available: presence without an agenda.</p></div></div><div class="tl-card"><div><span class="tl-yr">2015-2023</span><h3 class="tl-ttl">The long repair</h3><div class="tl-rule"></div></div><div><p class="tl-dsc">Shadow work. Self-forgiveness. Valentin's forgiveness. The slow, unglamorous work of becoming someone his son and his younger children could actually reach.</p><p class="tl-detail">No single moment. No dramatic turn. Years of reading, meditation, therapy, courses. The relationship rebuilt itself the way bones do after a fracture, stronger at the break.</p></div></div><div class="tl-card"><div><span class="tl-yr">2024</span><h3 class="tl-ttl">The sculpture</h3><div class="tl-rule"></div></div><div><p class="tl-dsc">Valentin gives Ricardo a clay sculpture for his fiftieth birthday. Inscribed with a sentence that took twenty-three years to earn: gracias por evolucionar conmigo.</p><p class="tl-detail">He called it 10 Lustros. He made it himself, fired it himself, carried it himself. It sits on Ricardo's desk now.</p></div></div><div class="tl-card"><div><span class="tl-yr">2025-2026</span><h3 class="tl-ttl">The book</h3><div class="tl-rule"></div></div><div><p class="tl-dsc">Valentin is 23. A working artist in Bilbao. He illustrated this book and made the cover sculpture. He is thriving.</p><p class="tl-detail">This book is not about Valentin. It is about Ricardo, about the mechanisms inside a loving father that nearly made him the cause of the thing he feared most. It exists now.</p></div></div></div></div><div class="tl-bottom"><div class="tl-dots" id="tlDots"><div class="tl-dot on"></div><div class="tl-dot"></div><div class="tl-dot"></div><div class="tl-dot"></div><div class="tl-dot"></div><div class="tl-dot"></div><div class="tl-dot"></div><div class="tl-dot"></div></div></div></div></div>
   </section>
 
   <section class="doors-section" aria-labelledby="doors-heading">
@@ -864,6 +757,15 @@
   window.addEventListener('scroll', tick, {passive:true});
   window.addEventListener('resize', tick, {passive:true});
   tick();
+})();
+</script>
+<script>
+(function(){
+  var outer=document.getElementById('tlOuter'),track=document.getElementById('tlTrack'),dotsEl=document.getElementById('tlDots');
+  if(!outer||!track)return;
+  var cards=Array.from(track.querySelectorAll('.tl-card')),dots=dotsEl?Array.from(dotsEl.querySelectorAll('.tl-dot')):[],n=cards.length;
+  function upd(){var r=outer.getBoundingClientRect(),s=outer.offsetHeight-window.innerHeight,p=Math.max(0,Math.min(1,-r.top/s)),i=Math.min(n-1,Math.floor(p*n));track.style.transform='translateX(-'+(i*100)+'%)';cards.forEach(function(c,j){c.classList.toggle('on',j===i);});dots.forEach(function(d,j){d.classList.toggle('on',j===i);});}
+  window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd,{passive:true});upd();
 })();
 </script>
 </body>
