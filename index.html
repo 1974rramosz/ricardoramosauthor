@@ -191,23 +191,25 @@
     /* TIMELINE */
     .tl-outer{position:relative;height:350vh;}
     .tl-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;}
-    .tl-header{flex-shrink:0;padding:1.75rem 8vw 1.25rem;border-bottom:0.5px solid rgba(26,16,8,.08);}
-    .tl-main-title{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);margin-bottom:.3rem;display:block;}
-    .tl-subtitle{font-family:var(--font-display);font-size:clamp(1rem,1.8vw,1.35rem);font-weight:500;color:var(--dark);line-height:1.3;margin:0;}
-    .tl-card-area{flex:1;min-height:0;overflow:hidden;padding:0 8vw;display:flex;align-items:center;}
-    .tl-track{display:flex;width:100%;transition:transform .6s cubic-bezier(.25,.46,.45,.94);will-change:transform;}
-    .tl-card{flex:0 0 100%;min-width:100%;opacity:0;transform:translateX(20px);transition:opacity .45s ease,transform .45s ease;display:grid;grid-template-columns:1fr 2fr;gap:4vw;align-items:start;}
+    .tl-header{flex-shrink:0;padding:2rem 8vw 1.5rem;border-bottom:0.5px solid rgba(26,16,8,.1);}
+    .tl-main-title{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);margin-bottom:.4rem;display:block;}
+    .tl-subtitle{font-family:var(--font-display);font-size:clamp(1.2rem,2vw,1.6rem);font-weight:500;color:var(--dark);line-height:1.3;margin:0;}
+    .tl-card-area{flex:1;min-height:0;overflow:hidden;padding:0 8vw;display:flex;align-items:stretch;}
+    .tl-track{display:flex;width:100%;align-items:stretch;transition:transform .6s cubic-bezier(.25,.46,.45,.94);will-change:transform;}
+    .tl-card{flex:0 0 100%;min-width:100%;opacity:0;transform:translateX(20px);transition:opacity .45s ease,transform .45s ease;display:grid;grid-template-columns:1fr 2fr;gap:5vw;align-items:center;padding:2.5rem 0;}
     .tl-card.on{opacity:1;transform:translateX(0);}
-    .tl-yr{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:.6rem;display:block;}
-    .tl-ttl{font-family:var(--font-display);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:500;color:var(--dark);line-height:1.2;margin-bottom:.9rem;}
-    .tl-rule{width:40px;height:2px;background:var(--terra);}
-    .tl-dsc{font-size:clamp(.88rem,1.2vw,1rem);color:var(--ink);line-height:1.8;margin-bottom:.9rem;}
-    .tl-detail{font-size:clamp(.8rem,1.1vw,.9rem);color:var(--ink-soft);line-height:1.75;padding-left:1rem;border-left:2px solid rgba(142,65,46,.2);}
-    .tl-bottom{flex-shrink:0;padding:.875rem 8vw 1rem;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(26,16,8,.08);}
-    .tl-dots{display:flex;gap:7px;}
-    .tl-dot{width:6px;height:6px;border-radius:50%;background:rgba(142,65,46,.2);transition:background .3s,transform .3s;}
+    .tl-left{}
+    .tl-yr{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:.75rem;display:block;}
+    .tl-ttl{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:500;color:var(--dark);line-height:1.15;margin-bottom:1.25rem;}
+    .tl-rule{width:48px;height:2px;background:var(--terra);}
+    .tl-right{}
+    .tl-dsc{font-size:clamp(1rem,1.4vw,1.15rem);color:var(--ink);line-height:1.8;margin-bottom:1.25rem;}
+    .tl-detail{font-size:clamp(.9rem,1.2vw,1rem);color:var(--ink-soft);line-height:1.75;padding-left:1.25rem;border-left:2px solid rgba(142,65,46,.25);}
+    .tl-bottom{flex-shrink:0;padding:1rem 8vw 1.25rem;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(26,16,8,.08);}
+    .tl-dots{display:flex;gap:8px;}
+    .tl-dot{width:7px;height:7px;border-radius:50%;background:rgba(142,65,46,.2);transition:background .3s,transform .3s;}
     .tl-dot.on{background:var(--terra);transform:scale(1.4);}
-    @media(max-width:600px){.tl-card{grid-template-columns:1fr;gap:1.25rem;}}
+    @media(max-width:700px){.tl-card{grid-template-columns:1fr;gap:1.5rem;padding:1.5rem 0;}}
 </style>
 </head>
   <nav class="nav hero-dark" id="main-nav" role="navigation" aria-label="Main navigation">
