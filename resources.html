@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resources — Ricardo Ramos</title>
 <meta name="description" content="Peer-reviewed research on gender identity, developmental biology, and parental acceptance — organised by theme.">
+<link rel="stylesheet" href="/css/styles.css" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,10 +15,7 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
 a{color:var(--terra);text-decoration:none;}a:hover{text-decoration:underline;}
-nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100;}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--dark);}
-.nav-links{display:flex;gap:1.5rem;list-style:none;font-size:0.85rem;}
-.nav-links a{color:var(--ink-soft);}.nav-links a:hover{color:var(--dark);}.nav-links a.active{color:var(--terra);font-weight:500;}
+/* nav styles from shared stylesheet */
 .hero{max-width:680px;margin:0 auto;padding:4rem 1.5rem 2rem;border-bottom:0.5px solid var(--border);}
 .hero-eyebrow{font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;}
 .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,2.75rem);font-weight:500;color:var(--dark);line-height:1.2;margin-bottom:1rem;}
@@ -79,15 +78,32 @@ main{max-width:680px;margin:0 auto;padding:2rem 1.5rem 5rem;}
 </style>
 </head>
 <body>
-<nav>
-  <a href="/" class="nav-logo">Ricardo Ramos</a>
-  <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/book">The book</a></li>
-    <li><a href="/resources" class="active">Resources</a></li>
-    <li><a href="/work-with-me">Work with me</a></li>
-  </ul>
-</nav>
+<nav class="nav" id="main-nav">
+    <a href="/" class="nav-logo">Ricardo Ramos</a>
+    <ul class="nav-links">
+      <li><a href="/book.html">The Book</a></li>
+      <li><a href="/resources" class="active">The Science</a></li>
+      <li><a href="/work-with-me.html">Work With Me</a></li>
+      <li><a href="/speaking.html">Speaking</a></li>
+      <li><a href="/press.html">Press</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="https://es.ricardoramosauthor.com" class="nav-lang">ES</a></li>
+      <li><a href="/book.html#chapter1" class="nav-cta">Get Chapter 1 Free</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="/book.html">The Book</a>
+    <a href="/resources">The Science</a>
+    <a href="/work-with-me.html">Work With Me</a>
+    <a href="/speaking.html">Speaking</a>
+    <a href="/press.html">Press</a>
+    <a href="/about.html">About</a>
+    <a href="/book.html#chapter1" class="mobile-cta">Get Chapter 1 Free</a>
+    <a href="https://es.ricardoramosauthor.com" style="font-size:0.85rem;color:var(--ink-soft);letter-spacing:0.08em;text-transform:uppercase;">ES</a>
+  </div>
 
 <section class="hero">
   <div class="hero-eyebrow">Science library</div>
@@ -449,5 +465,17 @@ async function askQuestion(btn){
   }finally{btn.disabled=false;btn.textContent='Ask';}
 }
 </script>
+  <script>
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+    const burger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      mobileNav.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  </script>
 </body>
 </html>
