@@ -338,6 +338,7 @@
             <div class="form-success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
             <h3>Chapter 1 is on its way.</h3>
             <p id="success-msg">Check your inbox. We will be in touch when the book is ready.</p>
+            <a href="/chapter-1.html" class="btn btn-primary" style="display:inline-block;margin-top:1.25rem;" target="_blank" rel="noopener">Read Chapter 1 now &rarr;</a>
           </div>
           <div class="form-box" id="form-wrap">
             <form id="chapter-form" novalidate>
@@ -409,6 +410,22 @@
   </footer>
 
   <script>
+    // Posts the signup, retrying automatically on network or server errors.
+    async function postSignup(payload) {
+      const delays = [0, 1200, 2500];
+      let lastErr;
+      for (const d of delays) {
+        if (d) await new Promise(r => setTimeout(r, d));
+        try {
+          const res = await fetch('/subscribe', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+          if (res.ok) return await res.json().catch(() => ({ success: true }));
+          if (res.status < 500 && res.status !== 429) throw Object.assign(new Error('rejected'), { final: true });
+          lastErr = new Error('server');
+        } catch (e) { if (e.final) throw e; lastErr = e; }
+      }
+      throw lastErr;
+    }
+
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
     const burger = document.getElementById('hamburger');
@@ -510,14 +527,15 @@
         relationship: document.getElementById('f-rel').value,
       };
       try {
-        const res = await fetch('/subscribe', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-        if (!res.ok) throw new Error('Server error');
+        const data = await postSignup(payload);
         document.getElementById('form-wrap').style.display = 'none';
-        document.getElementById('success-msg').textContent = 'Chapter 1 is on its way to ' + payload.email + '. We will be in touch when the book is ready.';
+        document.getElementById('success-msg').textContent = data.emailSent === false
+          ? 'Your copy is ready right here. The email is running late, so you do not need to wait for it.'
+          : 'Chapter 1 is on its way to ' + payload.email + '. You can also start reading right now.';
         document.getElementById('form-success').classList.add('show');
       } catch {
         const errEl = document.getElementById('form-error');
-        errEl.textContent = 'Something went wrong. Please try again or email ricardo@ricardoramosauthor.com directly.';
+        errEl.textContent = 'We could not reach the server. Your details are still here, just tap the button again.';
         errEl.classList.add('show');
         btn.classList.remove('loading'); btn.disabled = false;
       }

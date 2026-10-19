@@ -1,3 +1,20 @@
+// Calls Brevo, retrying once on network errors, rate limits or server errors.
+async function brevoFetch(url, init) {
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const res = await fetch(url, init);
+      if ((res.status === 429 || res.status >= 500) && attempt === 1) {
+        await new Promise(r => setTimeout(r, 600));
+        continue;
+      }
+      return res;
+    } catch (e) {
+      if (attempt === 2) throw e;
+      await new Promise(r => setTimeout(r, 600));
+    }
+  }
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -22,7 +39,7 @@ export async function onRequestPost(context) {
     }
 
     // 1. Create or update contact in Brevo list 3
-    const contactRes = await fetch('https://api.brevo.com/v3/contacts', {
+    const contactRes = await brevoFetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
@@ -55,7 +72,7 @@ export async function onRequestPost(context) {
     // 2. Send Chapter 1 delivery email via Brevo transactional
     const chapterUrl = 'https://ricardoramosauthor.com/chapter-1.html';
 
-    const emailRes = await fetch('https://api.brevo.com/v3/smtp/email', {
+    const emailRes = await brevoFetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
@@ -147,13 +164,14 @@ export async function onRequestPost(context) {
       }),
     });
 
-    if (!emailRes.ok) {
+    let emailSent = emailRes.ok;
+    if (!emailSent) {
       const err = await emailRes.text();
-      console.error('Brevo email error:', err);
-      // Contact was created — still return success, email failure is non-fatal
+      console.error('Brevo email error:', emailRes.status, err);
+      // Contact was saved, so the signup still succeeds. The page shows Chapter 1 directly.
     }
 
-    return new Response(JSON.stringify({ success: true }), {
+    return new Response(JSON.stringify({ success: true, emailSent }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
