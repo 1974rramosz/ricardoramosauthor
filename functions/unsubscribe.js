@@ -14,6 +14,11 @@ export async function onRequestPost(context) {
 
     const BREVO_API_KEY = env.BREVO_API_KEY;
 
+    // Also drop any signup still waiting in the backup queue
+    if (env.SIGNUPS_BACKUP) {
+      try { await env.SIGNUPS_BACKUP.delete(`pending:${email.trim().toLowerCase()}`); } catch (e) { console.error('backup delete error:', e); }
+    }
+
     // Remove contact from list 3
     const res = await fetch(`https://api.brevo.com/v3/contacts/lists/3/contacts/remove`, {
       method: 'POST',

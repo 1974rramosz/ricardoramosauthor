@@ -15,64 +15,50 @@ async function brevoFetch(url, init) {
   }
 }
 
-export async function onRequestPost(context) {
-  const { request, env } = context;
+const json = (obj, status = 200) =>
+  new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json' } });
 
+const pendingKey = (email) => `pending:${email.trim().toLowerCase()}`;
+
+// Creates or updates the contact in Brevo list 3. Returns true on success.
+async function createContact(env, { name, email, country, relationship }) {
+  if (!env.BREVO_API_KEY) { console.error('BREVO_API_KEY is not set'); return false; }
   try {
-    const body = await request.json();
-    const { name, email, country, relationship } = body;
-
-    if (!name || !email || !country || !relationship) {
-      return new Response(JSON.stringify({ error: 'Missing required fields' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    const BREVO_API_KEY = env.BREVO_API_KEY;
-    if (!BREVO_API_KEY) {
-      console.error('BREVO_API_KEY is not set');
-      return new Response(JSON.stringify({ error: 'Failed to create contact', detail: 'missing_api_key' }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
-
-    // 1. Create or update contact in Brevo list 3
-    const contactRes = await brevoFetch('https://api.brevo.com/v3/contacts', {
+    const res = await brevoFetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
-      headers: {
-        'accept': 'application/json',
-        'content-type': 'application/json',
-        'api-key': BREVO_API_KEY,
-      },
+      headers: { 'accept': 'application/json', 'content-type': 'application/json', 'api-key': env.BREVO_API_KEY },
       body: JSON.stringify({
-        email: email,
-        attributes: {
-          FIRSTNAME: name,
-          COUNTRY: country,
-          RELATIONSHIP: relationship,
-        },
+        email,
+        attributes: { FIRSTNAME: name, COUNTRY: country, RELATIONSHIP: relationship },
         listIds: [3],
         updateEnabled: true,
       }),
     });
+    if (res.ok || res.status === 204) return true;
+    console.error('Brevo contact error:', res.status, await res.text());
+    return false;
+  } catch (e) {
+    console.error('Brevo contact network error:', e);
+    return false;
+  }
+}
 
-    if (!contactRes.ok && contactRes.status !== 204) {
-      const err = await contactRes.text();
-      console.error('Brevo contact error:', contactRes.status, err);
-      let code = 'unknown';
-      try { const j = JSON.parse(err); code = j.code || code; if (/ip/i.test(j.message || '')) code += '_ip_not_authorized'; } catch {}
-      return new Response(JSON.stringify({ error: 'Failed to create contact', detail: `brevo_${contactRes.status}_${code}` }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
+// Sends the Chapter 1 delivery email. Returns true on success.
+async function sendChapterEmail(env, { name, email }) {
+  try {
+    const emailRes = await deliveryRequest(env.BREVO_API_KEY, name, email);
+    if (emailRes.ok) return true;
+    console.error('Brevo email error:', emailRes.status, await emailRes.text());
+    return false;
+  } catch (e) {
+    console.error('Brevo email network error:', e);
+    return false;
+  }
+}
 
-    // 2. Send Chapter 1 delivery email via Brevo transactional
-    const chapterUrl = 'https://ricardoramosauthor.com/chapter-1.html';
-
-    const emailRes = await brevoFetch('https://api.brevo.com/v3/smtp/email', {
+function deliveryRequest(BREVO_API_KEY, name, email) {
+  const chapterUrl = 'https://ricardoramosauthor.com/chapter-1.html';
+  return brevoFetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
         'accept': 'application/json',
@@ -163,24 +149,56 @@ export async function onRequestPost(context) {
         `,
       }),
     });
+}
 
-    let emailSent = emailRes.ok;
-    if (!emailSent) {
-      const err = await emailRes.text();
-      console.error('Brevo email error:', emailRes.status, err);
-      // Contact was saved, so the signup still succeeds. The page shows Chapter 1 directly.
+// Retries any signups saved while Brevo was unreachable. Runs in the background after a successful signup.
+async function replayPending(env) {
+  if (!env.SIGNUPS_BACKUP) return;
+  try {
+    const { keys } = await env.SIGNUPS_BACKUP.list({ prefix: 'pending:', limit: 20 });
+    for (const { name: key } of keys) {
+      const raw = await env.SIGNUPS_BACKUP.get(key);
+      if (!raw) continue;
+      const data = JSON.parse(raw);
+      if (await createContact(env, data)) {
+        await sendChapterEmail(env, data);
+        await env.SIGNUPS_BACKUP.delete(key);
+        console.log('Recovered pending signup', key);
+      } else {
+        break; // Brevo still failing, try again on the next signup
+      }
+    }
+  } catch (e) {
+    console.error('replayPending error:', e);
+  }
+}
+
+export async function onRequestPost(context) {
+  const { request, env } = context;
+
+  try {
+    const { name, email, country, relationship } = await request.json();
+    if (!name || !email || !country || !relationship) {
+      return json({ error: 'Missing required fields' }, 400);
+    }
+    const data = { name, email, country, relationship };
+
+    if (!(await createContact(env, data))) {
+      // Brevo is unreachable or rejecting us: keep the signup safe and replay it later.
+      if (env.SIGNUPS_BACKUP) {
+        await env.SIGNUPS_BACKUP.put(pendingKey(email), JSON.stringify({ ...data, savedAt: new Date().toISOString() }));
+        console.error('Signup saved to backup for later replay:', pendingKey(email));
+        return json({ success: true, emailSent: false, queued: true });
+      }
+      return json({ error: 'Failed to create contact' }, 500);
     }
 
-    return new Response(JSON.stringify({ success: true, emailSent }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    const emailSent = await sendChapterEmail(env, data);
+    context.waitUntil(replayPending(env));
+    return json({ success: true, emailSent });
 
   } catch (e) {
     console.error('subscribe function error:', e);
-    return new Response(JSON.stringify({ error: 'Server error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ error: 'Server error' }, 500);
   }
 }
