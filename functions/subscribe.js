@@ -13,6 +13,13 @@ export async function onRequestPost(context) {
     }
 
     const BREVO_API_KEY = env.BREVO_API_KEY;
+    if (!BREVO_API_KEY) {
+      console.error('BREVO_API_KEY is not set');
+      return new Response(JSON.stringify({ error: 'Failed to create contact', detail: 'missing_api_key' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
 
     // 1. Create or update contact in Brevo list 3
     const contactRes = await fetch('https://api.brevo.com/v3/contacts', {
@@ -36,8 +43,10 @@ export async function onRequestPost(context) {
 
     if (!contactRes.ok && contactRes.status !== 204) {
       const err = await contactRes.text();
-      console.error('Brevo contact error:', err);
-      return new Response(JSON.stringify({ error: 'Failed to create contact' }), {
+      console.error('Brevo contact error:', contactRes.status, err);
+      let code = 'unknown';
+      try { code = JSON.parse(err).code || code; } catch {}
+      return new Response(JSON.stringify({ error: 'Failed to create contact', detail: `brevo_${contactRes.status}_${code}` }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       });
