@@ -45,7 +45,7 @@ export async function onRequestPost(context) {
       const err = await contactRes.text();
       console.error('Brevo contact error:', contactRes.status, err);
       let code = 'unknown';
-      try { code = JSON.parse(err).code || code; } catch {}
+      try { const j = JSON.parse(err); code = j.code || code; if (/ip/i.test(j.message || '')) code += '_ip_not_authorized'; } catch {}
       return new Response(JSON.stringify({ error: 'Failed to create contact', detail: `brevo_${contactRes.status}_${code}` }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
