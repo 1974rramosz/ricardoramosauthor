@@ -202,3 +202,12 @@ export async function onRequestPost(context) {
     return json({ error: 'Server error' }, 500);
   }
 }
+
+// Health check: reports whether the backup queue is connected and how many signups are waiting. No personal data.
+export async function onRequestGet({ env }) {
+  let pending = null;
+  if (env.SIGNUPS_BACKUP) {
+    try { pending = (await env.SIGNUPS_BACKUP.list({ prefix: 'pending:', limit: 100 })).keys.length; } catch {}
+  }
+  return json({ backup: !!env.SIGNUPS_BACKUP, pending, apiKey: !!env.BREVO_API_KEY });
+}
